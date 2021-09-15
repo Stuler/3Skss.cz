@@ -19,3 +19,7 @@ di:
 
 services:
 	- App\Router\RouterFactory::createRouter
+
+	userRepository:
+		factory: App\Models\Repository\Table\UserRepository
+		inject: true
