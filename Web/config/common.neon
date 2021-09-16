@@ -23,3 +23,9 @@ services:
 	userRepository:
 		factory: App\Models\Repository\Table\UserRepository
 		inject: true
+
+	- App\Components\Login\FormLogin\FormLoginFactory
+	formLogin:
+		class: App\Components\Login\FormLogin\FormLogin
+		inject: true
+		autowired: false
