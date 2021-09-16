@@ -17,7 +17,7 @@ class FormLogin extends Control {
 	 * Povolen checkbox na trvalé přihlášení?
 	 * @var bool
 	 */
-	protected $isPermanentLogin;
+	protected $isPermanentLogin = true;
 
 	/** @var array Kam přesměrovat po úspěšném loginu ? */
 	public $linkRedirectAfterLogin = "Dashboard:default";
