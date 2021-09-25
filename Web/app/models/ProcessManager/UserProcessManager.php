@@ -6,37 +6,39 @@ namespace App\models\ProcessManager;
 use App\models\BaseModel\BaseModel;
 
 use App\models\Repository\Table\UserRepository;
-use Nette\Database\Context;
 use Nette\Database\Explorer;
 use Nette\Security\AuthenticationException;
-use Nette\Security\Authenticator;
+use Nette\Security\IAuthenticator;
 use Nette\Security\IIdentity;
 use Nette\Security\Passwords;
+use Nette\SmartObject;
 
-class UserProcessManager implements Authenticator {
+class UserProcessManager implements IAuthenticator {
+	use SmartObject;
 
 	/** @var UserRepository @inject @internal */
 	public $userRepo;
 
-
-	/** @var Context */
-	protected $db;
+	/** @var Explorer */
+	private $db;
 
 	/** @var Passwords */
 	private $passwords;
 
-	public function __construct(Context $db, Passwords $passwords)
-	{
+	public function __construct(Explorer $db, Passwords $passwords) {
 		$this->db = $db;
 		$this->passwords = $passwords;
 	}
 
 	/**
-	 * @inheritDoc
+	 * Performs an authentication.
+	 * @throws AuthenticationException
 	 */
-	function authenticate(string $user, string $password): IIdentity {
-		$user = $this->userRepo->fetchByCredentials($user);
-		bdump($user);
+	function authenticate($credentials): IIdentity {
+		[$email, $password] = $credentials;
+
+		$user = $this->userRepo->fetchByEmail($email);
+
 		if (!$user) {
 			throw new AuthenticationException('Zadané uživatelské jméno/email neexistuje.', self::IDENTITY_NOT_FOUND);
 		} elseif (!$this->passwords->verify($password, $user['password'])) {  // Ověří zadané heslo.

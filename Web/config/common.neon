@@ -19,6 +19,7 @@ di:
 
 services:
 	- App\Router\RouterFactory::createRouter
+	authenticator: App\models\ProcessManager\UserProcessManager
 
 	userRepository:
 		factory: App\Models\Repository\Table\UserRepository

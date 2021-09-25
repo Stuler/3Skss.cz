@@ -2,25 +2,27 @@
 
 declare(strict_types=1);
 
-namespace App\Presenters;
+namespace App\MemberModule\Presenters;
 
 use App\components\Login\FormLogin\FormLogin;
 use App\components\Login\FormLogin\FormLoginFactory;
 use Nette;
-use App\models\BaseModel\BaseModel;
-use App\models\Repository\Table\UserRepository;
+use Nette\Database\Explorer;
 
 final class HomepagePresenter extends Nette\Application\UI\Presenter {
 
 	/** @var FormLoginFactory @inject @internal */
 	public $formLoginFactory;
 
-	/** @var UserRepository @inject @internal */
-	public $userRepo;
+	/** @var \Nette\Database\Context */
+	private $db;
+
+	public function __construct(Explorer $db) {
+		$this->db = $db;
+	}
 
 	public function renderDefault(): void {
 		$t = $this->template;
-		$t->finds = $this->userRepo->findAllActive();
 	}
 
 	public function createComponentFormLogin():FormLogin {
