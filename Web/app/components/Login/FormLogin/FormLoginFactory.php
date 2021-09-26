@@ -16,7 +16,13 @@ class FormLoginFactory {
 		$this->container = $container;
 	}
 
-	public function create(): FormLogin {
-		return $this->container->createService("formLogin");
+	/**
+	 * @param null   $backlink
+	 * @param array  $additionalUrlParam
+	 * @param string $linkRedirectAfterLogin
+	 * @return FormLogin
+	 */
+	public function create($backlink = null, array $additionalUrlParam = [], string $linkRedirectAfterLogin = "Homepage:default"): FormLogin {
+		return $this->container->getService("formLogin")->create($backlink, $additionalUrlParam, $linkRedirectAfterLogin);
 	}
 }

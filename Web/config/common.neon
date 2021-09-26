@@ -16,10 +16,28 @@ di:
 		parameters: no
 		tags: no
 
+security:
+    roles:
+        guest:
+        member: [guest]
+        admin:
+
 
 services:
 	- App\Router\RouterFactory::createRouter
+	- App\Forms\FormFactory
+	- App\Forms\SignInFormFactory
 	authenticator: App\models\ProcessManager\UserProcessManager
+	security.authorizator:
+		setup:
+			- addResource(Error)
+			- addResource(Admin:Dashboard)
+			- addResource(Admin:Sign)
+			- allow(admin)
+			- allow(guest, Error)
+			- allow(guest, Admin:Sign)
+			- allow(member, Admin:Dashboard, default)
+			- allow(member, Admin:Sign, out)
 
 	userRepository:
 		factory: App\Models\Repository\Table\UserRepository

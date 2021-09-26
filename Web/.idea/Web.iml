@@ -27,6 +27,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/tracy/tracy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nette/routing" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/thanks" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/nittro/nette-bridges" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/tomaj/nette-bootstrap-form" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

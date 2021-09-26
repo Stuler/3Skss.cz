@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'v3.1.4',
-    'version' => '3.1.4.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '5bf0d1e8cb6e0bfa33b0513641395934f5e4cc34',
     'name' => 'nette/web-project',
   ),
   'versions' => 
@@ -184,12 +184,21 @@
     ),
     'nette/web-project' => 
     array (
-      'pretty_version' => 'v3.1.4',
-      'version' => '3.1.4.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '5bf0d1e8cb6e0bfa33b0513641395934f5e4cc34',
+    ),
+    'nittro/nette-bridges' => 
+    array (
+      'pretty_version' => 'v2.1.4',
+      'version' => '2.1.4.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '17b54acc3ad8cd711436043521209cf5d609582a',
     ),
     'symfony/thanks' => 
     array (
@@ -199,6 +208,15 @@
       array (
       ),
       'reference' => 'e9c4709560296acbd4fe9e12b8d57a925aa7eae8',
+    ),
+    'tomaj/nette-bootstrap-form' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '174f04d01aab097453dad98cb6c37dc6d7ecf864',
     ),
     'tracy/tracy' => 
     array (
