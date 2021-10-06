@@ -2,11 +2,11 @@
 
 use Latte\Runtime as LR;
 
-/** source: /Users/anythingdev/Sites/3Skss.cz/Web/app/Components/Login/FormLogin/formLogin.latte */
-final class Template2a20b16ffa extends Latte\Runtime\Template
+/** source: /Users/anythingdev/Sites/3Skss.cz/Web/app/AdminModule/Presenters/templates/Dashboard/login.latte */
+final class Template8c12619eb5 extends Latte\Runtime\Template
 {
 	protected const BLOCKS = [
-		['content' => 'blockContent'],
+		['title' => 'blockTitle', 'content' => 'blockContent'],
 	];
 
 
@@ -16,7 +16,9 @@ final class Template2a20b16ffa extends Latte\Runtime\Template
 		if ($this->getParentName()) {
 			return get_defined_vars();
 		}
-		$this->renderBlock('content', get_defined_vars()) /* line 1 */;
+		$this->renderBlock('title', get_defined_vars()) /* line 1 */;
+		echo "\n";
+		$this->renderBlock('content', get_defined_vars()) /* line 2 */;
 		return get_defined_vars();
 	}
 
@@ -29,13 +31,20 @@ final class Template2a20b16ffa extends Latte\Runtime\Template
 	}
 
 
-	/** {block content} on line 1 */
+	/** {block title} on line 1 */
+	public function blockTitle(array $ʟ_args): void
+	{
+		echo 'Přihlášení';
+	}
+
+
+	/** {block content} on line 2 */
 	public function blockContent(array $ʟ_args): void
 	{
 		extract($this->params);
 		extract($ʟ_args);
 		unset($ʟ_args);
-		/* line 2 */ $_tmp = $this->global->uiControl->getComponent("formLogin");
+		/* line 3 */ $_tmp = $this->global->uiControl->getComponent("signInForm");
 		if ($_tmp instanceof Nette\Application\UI\Renderable) $_tmp->redrawControl(null, false);
 		$_tmp->render();
 		

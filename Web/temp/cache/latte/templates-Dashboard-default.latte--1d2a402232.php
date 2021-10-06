@@ -35,8 +35,12 @@ final class Template1d2a402232 extends Latte\Runtime\Template
 		extract($this->params);
 		extract($ʟ_args);
 		unset($ʟ_args);
-		echo '	';
-		echo LR\Filters::escapeHtmlText($text) /* line 2 */;
+		echo '	<p>Vítejte v administraci!</p>
+';
+		if (!$user->isInRole('admin')) /* line 3 */ {
+			echo '	<p>Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
+';
+		}
 		echo "\n";
 	}
 

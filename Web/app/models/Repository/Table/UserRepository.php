@@ -21,11 +21,12 @@ class UserRepository extends BaseModel {
 	/**
 	 * Vhodné pro vlastní authenticator, který má jinou logiku či jiné sloupce
 	 * @param $email
-	 * @return false|ActiveRow
+	 * @return ActiveRow
 	 */
-	public function fetchByEmail($email) {
+	public function fetchByEmail($email): ActiveRow {
 		return $this->db->table($this->table)
-			->where('email', $email)->where('is_active', 1)
+			->where('email', $email)
+			->where('is_active', 1)
 			->fetch();
 	}
 }

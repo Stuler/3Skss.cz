@@ -15,8 +15,11 @@ final class RouterFactory {
 		$router[] = $module = new RouteList('Admin');
 		$module->addRoute('admin/<presenter>/<action>', 'Dashboard:default');
 
-		$router[] = $module = new RouteList('Member');
-		$module->addRoute('<presenter>/<action>', 'Homepage:default');
+//		$router[] = $module = new RouteList('Member');
+//		$module->addRoute('<presenter>/<action>', 'Homepage:default');
+
+		$router->addRoute('[<url>]', 'Admin:Dashboard:default');
 		return $router;
+
 	}
 }

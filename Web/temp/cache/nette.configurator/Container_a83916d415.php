@@ -64,160 +64,49 @@ class Container_a83916d415 extends Nette\DI\Container
 		'Tracy\Bar' => [['tracy.bar']],
 		'Nette\Routing\RouteList' => [['01']],
 		'Nette\Routing\Router' => [['01']],
-		'ArrayAccess' => [
-			2 => [
-				'01',
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
-		],
+		'ArrayAccess' => [2 => ['01', 'application.1', 'application.2', 'application.4', 'application.5', 'application.6']],
 		'Countable' => [2 => ['01']],
 		'IteratorAggregate' => [2 => ['01']],
 		'Traversable' => [2 => ['01']],
 		'Nette\Application\Routers\RouteList' => [['01']],
 		'App\Forms\FormFactory' => [['02']],
 		'App\Forms\SignInFormFactory' => [['03']],
+		'App\Forms\SignUpFormFactory' => [['04']],
+		'Nette\Security\Authenticator' => [['authenticator']],
 		'Nette\Security\IAuthenticator' => [['authenticator']],
-		'App\models\ProcessManager\UserProcessManager' => [['authenticator']],
+		'App\models\UserManager' => [['authenticator']],
 		'App\models\BaseModel\BaseModel' => [['userRepository']],
 		'App\models\Repository\Table\UserRepository' => [['userRepository']],
-		'App\components\Login\FormLogin\FormLoginFactory' => [['04']],
+		'App\Presenters\_core\BasePresenter' => [2 => ['application.1', 'application.2', 'application.4', 'application.5']],
+		'Nette\Application\UI\Presenter' => [
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
+		],
 		'Nette\Application\UI\Control' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\Application\UI\Component' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\ComponentModel\Container' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\ComponentModel\Component' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\Application\UI\Renderable' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\ComponentModel\IContainer' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\ComponentModel\IComponent' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\Application\UI\SignalReceiver' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\Application\UI\StatePersistent' => [
-			2 => [
-				'formLogin',
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
-		],
-		'App\components\Login\FormLogin\FormLogin' => [2 => ['formLogin']],
-		'Nette\Application\UI\Presenter' => [
-			2 => [
-				'application.1',
-				'application.2',
-				'application.3',
-				'application.4',
-				'application.6',
-				'application.7',
-				'application.8',
-				'application.9',
-			],
+			2 => ['application.1', 'application.2', 'application.4', 'application.5', 'application.6'],
 		],
 		'Nette\Application\IPresenter' => [
 			2 => [
@@ -229,22 +118,15 @@ class Container_a83916d415 extends Nette\DI\Container
 				'application.6',
 				'application.7',
 				'application.8',
-				'application.9',
-				'application.10',
-				'application.11',
 			],
 		],
 		'App\MemberModule\Presenters\HomepagePresenter' => [2 => ['application.1']],
-		'App\AdminModule\Presenters\BaseAdminPresenter' => [2 => ['application.2', 'application.3', 'application.4']],
-		'App\AdminModule\Presenters\SignPresenter' => [2 => ['application.2']],
-		'App\AdminModule\Presenters\DashboardPresenter' => [2 => ['application.4']],
-		'App\Presenters\ErrorPresenter' => [2 => ['application.5']],
-		'App\Presenters\_core\BasePresenter' => [2 => ['application.6', 'application.7', 'application.8']],
-		'App\Presenters\_core\SecuredPresenter' => [2 => ['application.7']],
-		'App\Presenters\AuthPresenter' => [2 => ['application.8']],
-		'App\Presenters\Error4xxPresenter' => [2 => ['application.9']],
-		'NetteModule\ErrorPresenter' => [2 => ['application.10']],
-		'NetteModule\MicroPresenter' => [2 => ['application.11']],
+		'App\AdminModule\Presenters\DashboardPresenter' => [2 => ['application.2']],
+		'App\Presenters\ErrorPresenter' => [2 => ['application.3']],
+		'App\Presenters\_core\SecuredPresenter' => [2 => ['application.5']],
+		'App\Presenters\Error4xxPresenter' => [2 => ['application.6']],
+		'NetteModule\ErrorPresenter' => [2 => ['application.7']],
+		'NetteModule\MicroPresenter' => [2 => ['application.8']],
 		'Nette\Forms\FormFactory' => [['forms.factory']],
 	];
 
@@ -274,46 +156,15 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
-	public function createService04(): App\components\Login\FormLogin\FormLoginFactory
+	public function createService04(): App\Forms\SignUpFormFactory
 	{
-		return new App\Components\Login\FormLogin\FormLoginFactory($this);
+		return new App\Forms\SignUpFormFactory($this->getService('02'), $this->getService('authenticator'));
 	}
 
 
 	public function createServiceApplication__1(): App\MemberModule\Presenters\HomepagePresenter
 	{
-		$service = new App\MemberModule\Presenters\HomepagePresenter($this->getService('database.default.context'));
-		$service->injectPrimary(
-			$this,
-			$this->getService('application.presenterFactory'),
-			$this->getService('01'),
-			$this->getService('http.request'),
-			$this->getService('http.response'),
-			$this->getService('session.session'),
-			$this->getService('security.user'),
-			$this->getService('latte.templateFactory')
-		);
-		$service->formLoginFactory = $this->getService('04');
-		$service->invalidLinkMode = 5;
-		return $service;
-	}
-
-
-	public function createServiceApplication__10(): NetteModule\ErrorPresenter
-	{
-		return new NetteModule\ErrorPresenter($this->getService('tracy.logger'));
-	}
-
-
-	public function createServiceApplication__11(): NetteModule\MicroPresenter
-	{
-		return new NetteModule\MicroPresenter($this, $this->getService('http.request'), $this->getService('01'));
-	}
-
-
-	public function createServiceApplication__2(): App\AdminModule\Presenters\SignPresenter
-	{
-		$service = new App\AdminModule\Presenters\SignPresenter($this->getService('03'));
+		$service = new App\MemberModule\Presenters\HomepagePresenter;
 		$service->injectPrimary(
 			$this,
 			$this->getService('application.presenterFactory'),
@@ -330,9 +181,9 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
-	public function createServiceApplication__3(): App\AdminModule\Presenters\BaseAdminPresenter
+	public function createServiceApplication__2(): App\AdminModule\Presenters\DashboardPresenter
 	{
-		$service = new App\AdminModule\Presenters\BaseAdminPresenter;
+		$service = new App\AdminModule\Presenters\DashboardPresenter($this->getService('03'), $this->getService('04'));
 		$service->injectPrimary(
 			$this,
 			$this->getService('application.presenterFactory'),
@@ -349,32 +200,13 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
-	public function createServiceApplication__4(): App\AdminModule\Presenters\DashboardPresenter
-	{
-		$service = new App\AdminModule\Presenters\DashboardPresenter($this->getService('database.default.context'));
-		$service->injectPrimary(
-			$this,
-			$this->getService('application.presenterFactory'),
-			$this->getService('01'),
-			$this->getService('http.request'),
-			$this->getService('http.response'),
-			$this->getService('session.session'),
-			$this->getService('security.user'),
-			$this->getService('latte.templateFactory')
-		);
-		$service->injectFormFactory($this->getService('02'));
-		$service->invalidLinkMode = 5;
-		return $service;
-	}
-
-
-	public function createServiceApplication__5(): App\Presenters\ErrorPresenter
+	public function createServiceApplication__3(): App\Presenters\ErrorPresenter
 	{
 		return new App\Presenters\ErrorPresenter($this->getService('tracy.logger'));
 	}
 
 
-	public function createServiceApplication__6(): App\Presenters\_core\BasePresenter
+	public function createServiceApplication__4(): App\Presenters\_core\BasePresenter
 	{
 		$service = new App\Presenters\_core\BasePresenter;
 		$service->injectPrimary(
@@ -387,12 +219,13 @@ class Container_a83916d415 extends Nette\DI\Container
 			$this->getService('security.user'),
 			$this->getService('latte.templateFactory')
 		);
+		$service->injectFormFactory($this->getService('02'));
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
 
 
-	public function createServiceApplication__7(): App\Presenters\_core\SecuredPresenter
+	public function createServiceApplication__5(): App\Presenters\_core\SecuredPresenter
 	{
 		$service = new App\Presenters\_core\SecuredPresenter;
 		$service->injectPrimary(
@@ -405,30 +238,13 @@ class Container_a83916d415 extends Nette\DI\Container
 			$this->getService('security.user'),
 			$this->getService('latte.templateFactory')
 		);
+		$service->injectFormFactory($this->getService('02'));
 		$service->invalidLinkMode = 5;
 		return $service;
 	}
 
 
-	public function createServiceApplication__8(): App\Presenters\AuthPresenter
-	{
-		$service = new App\Presenters\AuthPresenter;
-		$service->injectPrimary(
-			$this,
-			$this->getService('application.presenterFactory'),
-			$this->getService('01'),
-			$this->getService('http.request'),
-			$this->getService('http.response'),
-			$this->getService('session.session'),
-			$this->getService('security.user'),
-			$this->getService('latte.templateFactory')
-		);
-		$service->invalidLinkMode = 5;
-		return $service;
-	}
-
-
-	public function createServiceApplication__9(): App\Presenters\Error4xxPresenter
+	public function createServiceApplication__6(): App\Presenters\Error4xxPresenter
 	{
 		$service = new App\Presenters\Error4xxPresenter;
 		$service->injectPrimary(
@@ -443,6 +259,18 @@ class Container_a83916d415 extends Nette\DI\Container
 		);
 		$service->invalidLinkMode = 5;
 		return $service;
+	}
+
+
+	public function createServiceApplication__7(): NetteModule\ErrorPresenter
+	{
+		return new NetteModule\ErrorPresenter($this->getService('tracy.logger'));
+	}
+
+
+	public function createServiceApplication__8(): NetteModule\MicroPresenter
+	{
+		return new NetteModule\MicroPresenter($this, $this->getService('http.request'), $this->getService('01'));
 	}
 
 
@@ -491,12 +319,9 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
-	public function createServiceAuthenticator(): App\models\ProcessManager\UserProcessManager
+	public function createServiceAuthenticator(): App\models\UserManager
 	{
-		return new App\models\ProcessManager\UserProcessManager(
-			$this->getService('database.default.context'),
-			$this->getService('security.passwords')
-		);
+		return new App\models\UserManager($this->getService('database.default.context'), $this->getService('security.passwords'));
 	}
 
 
@@ -556,12 +381,6 @@ class Container_a83916d415 extends Nette\DI\Container
 	public function createServiceDatabase__default__structure(): Nette\Database\Structure
 	{
 		return new Nette\Database\Structure($this->getService('database.default.connection'), $this->getService('cache.storage'));
-	}
-
-
-	public function createServiceFormLogin(): App\components\Login\FormLogin\FormLogin
-	{
-		return new App\Components\Login\FormLogin\FormLogin;
 	}
 
 
@@ -643,14 +462,9 @@ class Container_a83916d415 extends Nette\DI\Container
 		$service->addRole('guest', null);
 		$service->addRole('member', ['guest']);
 		$service->addRole('admin', null);
-		$service->addResource('Error');
 		$service->addResource('Admin:Dashboard');
-		$service->addResource('Admin:Sign');
-		$service->allow('admin');
-		$service->allow('guest', 'Error');
-		$service->allow('guest', 'Admin:Sign');
-		$service->allow('member', 'Admin:Dashboard', 'default');
-		$service->allow('member', 'Admin:Sign', 'out');
+		$service->allow('guest', 'Admin:Dashboard', 'login');
+		$service->allow('guest', 'Admin:Dashboard', 'register');
 		return $service;
 	}
 

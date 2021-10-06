@@ -27,24 +27,16 @@ services:
 	- App\Router\RouterFactory::createRouter
 	- App\Forms\FormFactory
 	- App\Forms\SignInFormFactory
-	authenticator: App\models\ProcessManager\UserProcessManager
+	- App\Forms\SignUpFormFactory
+	authenticator: App\models\UserManager
 	security.authorizator:
 		setup:
-			- addResource(Error)
-			- addResource(Admin:Dashboard)
-			- addResource(Admin:Sign)
-			- allow(admin)
-			- allow(guest, Error)
-			- allow(guest, Admin:Sign)
-			- allow(member, Admin:Dashboard, default)
-			- allow(member, Admin:Sign, out)
+		- addResource(Admin:Dashboard)
+		- allow(guest, Admin:Dashboard, login)
+		- allow(guest, Admin:Dashboard, register)
 
 	userRepository:
 		factory: App\Models\Repository\Table\UserRepository
 		inject: true
 
-	- App\Components\Login\FormLogin\FormLoginFactory
-	formLogin:
-		class: App\Components\Login\FormLogin\FormLogin
-		inject: true
-		autowired: false
+

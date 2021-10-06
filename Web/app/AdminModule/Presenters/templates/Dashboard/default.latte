@@ -1,3 +1,5 @@
 {block content}
-	{$text} <a class="btn btn-primary" n:href="Sign:Out">Odhlásit</a>
+	<p>Vítejte v administraci!</p>
+	<p n:if="!$user->isInRole('admin')">Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
+
 {/block}
