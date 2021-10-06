@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
-use App\models\ProcessManager\DuplicateNameException;
-use App\models\ProcessManager\UserProcessManager;
+use App\models\DuplicateNameException;
 use App\models\UserManager;
 use Nette\Application\UI\Form;
 use Nette\SmartObject;
