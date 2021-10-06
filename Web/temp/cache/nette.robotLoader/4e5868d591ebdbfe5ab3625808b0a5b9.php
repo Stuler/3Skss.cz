@@ -20,7 +20,7 @@ return array (
     'App\\Forms\\SignUpFormFactory' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Forms/SignUpFormFactory.php',
-      1 => 1633494716,
+      1 => 1633494842,
     ),
     'App\\MemberModule\\Presenters\\HomepagePresenter' => 
     array (
@@ -40,12 +40,12 @@ return array (
     'App\\models\\UserManager' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/UserManager.php',
-      1 => 1633494648,
+      1 => 1633497441,
     ),
     'App\\models\\DuplicateNameException' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/UserManager.php',
-      1 => 1633494648,
+      1 => 1633497441,
     ),
     'App\\models\\BaseModel\\BaseModel' => 
     array (
@@ -85,10 +85,6 @@ return array (
   ),
   1 => 
   array (
-    'App\\AdminModule\\Presenters\\DashboardDefaultTemplate' => 3,
-    'App\\AdminModule\\Presenters\\DashboardTemplate' => 3,
-    'App\\AdminModule\\Presenters\\DashboardLoginTemplate' => 3,
-    'App\\models\\ProcessManager\\UserProcessManager' => 3,
   ),
   2 => 
   array (

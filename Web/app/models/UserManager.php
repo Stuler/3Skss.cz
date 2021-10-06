@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\models;
 
-
 use App\models\Repository\Table\UserRepository;
 use Nette\Database\Explorer;
 use Nette\Database\Table\ActiveRow;
@@ -48,7 +47,6 @@ class UserManager implements Authenticator {
 	 * @throws AuthenticationException
 	 */
 	public function authenticate($user, $password): IIdentity {
-//		[$user, $password] = $credentials;
 
 		$row = $this->db->table($this->table)
 			->where('nick', $user)
@@ -67,7 +65,7 @@ class UserManager implements Authenticator {
 
 		$arr = $row->toArray();
 		unset($arr['password']);
-		return new SimpleIdentity($row['id'], $arr);
+		return $this->createIdentity($row['id']);
 	}
 
 	/*
@@ -85,7 +83,7 @@ class UserManager implements Authenticator {
 	public function fetchByNick($nick): ?ActiveRow {
 		return $this->db->table($this->table)
 			->where('nick', $nick)
-//			->where('is_active', 1)
+			//			->where('is_active', 1)
 			->fetch();
 	}
 
@@ -96,18 +94,22 @@ class UserManager implements Authenticator {
 			->fetch();
 	}
 
-	public function createIdentity($loginId): Identity {
-		$row = $this->$this->fetchById($loginId);
+	public function createIdentity(int $loginId): Identity {
+		$row = $this->fetchById($loginId);
 		if (!$row) {
 			throw new AuthenticationException('User was deactivated.');
 		}
-		$values = iterator_to_array($row);
-		$role = 'admin';
-		return new Identity($row['id'], $role, $values);
+		$values = $row->toArray();
+		$role = $row['role_id'];
+		return new Identity($row['id'], (string)$role, $values);
 	}
 
-	public function prepareValuesForLoggedUser($values) {
+	public function loggedUserValues($values) {
+		if (array_key_exists('password', $values)) {
+			unset($values['password']);
+		}
 
+		return $values;
 	}
 
 	/**
