@@ -32,6 +32,9 @@ services:
 	security.authorizator:
 		setup:
 		- addResource(Admin:Dashboard)
+		- addResource(Admin:Users)
+		- addResource(Admin:Teams)
+		- addResource(Admin:Events)
 		- allow(guest, Admin:Dashboard, login)
 		- allow(guest, Admin:Dashboard, register)
 

@@ -1,5 +1,8 @@
 {block content}
 <p>Vítejte v administraci!</p>
-</p>
+
+<p n:if="$user->isInRole('admin')"><a n:href="Users:default">Správa uživatelů</a></p>
+<p n:if="$user->isInRole('admin')"><a n:href="Teams:default">ORBAT</a></p>
+<p n:if="$user->isInRole('admin')"><a n:href="Events:default">Kalendář akcí</a></p>
 <p n:if="!$user->isInRole('admin')">Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
 <a n:href="logout">Odhlásit</a>

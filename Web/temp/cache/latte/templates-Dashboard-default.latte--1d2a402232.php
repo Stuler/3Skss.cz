@@ -36,14 +36,32 @@ final class Template1d2a402232 extends Latte\Runtime\Template
 		extract($ʟ_args);
 		unset($ʟ_args);
 		echo '<p>Vítejte v administraci!</p>
-</p>
+
 ';
-		if (!$user->isInRole('admin')) /* line 4 */ {
+		if ($user->isInRole('admin')) /* line 4 */ {
+			echo '<p><a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Users:default")) /* line 4 */;
+			echo '">Správa uživatelů</a></p>
+';
+		}
+		if ($user->isInRole('admin')) /* line 5 */ {
+			echo '<p><a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Teams:default")) /* line 5 */;
+			echo '">ORBAT</a></p>
+';
+		}
+		if ($user->isInRole('admin')) /* line 6 */ {
+			echo '<p><a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Events:default")) /* line 6 */;
+			echo '">Kalendář akcí</a></p>
+';
+		}
+		if (!$user->isInRole('admin')) /* line 7 */ {
 			echo '<p>Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
 ';
 		}
 		echo '<a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("logout")) /* line 5 */;
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("logout")) /* line 8 */;
 		echo '">Odhlásit</a>
 ';
 	}
