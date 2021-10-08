@@ -29,7 +29,7 @@ class BasePresenter extends Presenter {
 		parent::startup();
 		if (!$this->getUser()->isAllowed($this->getName(), $this->getAction())) {
 			$this->flashMessage('Nejsi přihlášený nebo nemáš dostatečná oprávnění.');
-			$this->redirect(':Admin:Dashboard:login');
+//			$this->redirect(':Admin:Dashboard:login');
 		}
 	}
 

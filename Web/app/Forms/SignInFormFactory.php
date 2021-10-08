@@ -40,8 +40,7 @@ class SignInFormFactory {
 
 		$form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess): void {
 			try {
-				bdump($values);
-				$this->user->setExpiration($values->remember ? '14 days' : '20 minutes');
+				$this->user->setExpiration($values->remember ? '14 days' : '1 minutes');
 				$this->user->login($values->nick, $values->password);
 			} catch (AuthenticationException $e) {
 				$form->addError('The username or password you entered is incorrect.');

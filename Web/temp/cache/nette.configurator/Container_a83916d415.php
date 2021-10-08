@@ -120,7 +120,7 @@ class Container_a83916d415 extends Nette\DI\Container
 				'application.8',
 			],
 		],
-		'App\MemberModule\Presenters\HomepagePresenter' => [2 => ['application.1']],
+		'App\MemberModule\Presenters\MemberDashboardPresenter' => [2 => ['application.1']],
 		'App\AdminModule\Presenters\DashboardPresenter' => [2 => ['application.2']],
 		'App\Presenters\ErrorPresenter' => [2 => ['application.3']],
 		'App\Presenters\_core\SecuredPresenter' => [2 => ['application.5']],
@@ -162,9 +162,9 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
-	public function createServiceApplication__1(): App\MemberModule\Presenters\HomepagePresenter
+	public function createServiceApplication__1(): App\MemberModule\Presenters\MemberDashboardPresenter
 	{
-		$service = new App\MemberModule\Presenters\HomepagePresenter;
+		$service = new App\MemberModule\Presenters\MemberDashboardPresenter;
 		$service->injectPrimary(
 			$this,
 			$this->getService('application.presenterFactory'),

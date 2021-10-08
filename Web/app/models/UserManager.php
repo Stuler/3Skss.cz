@@ -65,7 +65,7 @@ class UserManager implements Authenticator {
 
 		$arr = $row->toArray();
 		unset($arr['password']);
-		return $this->createIdentity($row['id']);
+		return new SimpleIdentity($row->id, $row->role, $arr);
 	}
 
 	/*
@@ -100,7 +100,7 @@ class UserManager implements Authenticator {
 			throw new AuthenticationException('User was deactivated.');
 		}
 		$values = $row->toArray();
-		$role = $row['role_id'];
+		$role = $row['role'];
 		return new Identity($row['id'], (string)$role, $values);
 	}
 

@@ -8,7 +8,7 @@ use App\Presenters\_core\BasePresenter;
 use Nette;
 use Nette\Database\Explorer;
 
-final class HomepagePresenter extends BasePresenter {
+final class MemberDashboardPresenter extends BasePresenter {
 
 	public function renderDefault(): void {
 		$t = $this->template;

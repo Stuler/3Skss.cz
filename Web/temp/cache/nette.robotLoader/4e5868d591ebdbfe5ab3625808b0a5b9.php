@@ -7,10 +7,15 @@ return array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Types/Form/TFormSignIn.php',
       1 => 1632597314,
     ),
+    'App\\Types\\DB\\Tables\\TDbRole' => 
+    array (
+      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Types/DB/Tables/TDbRole.php',
+      1 => 1633583928,
+    ),
     'App\\Forms\\SignInFormFactory' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Forms/SignInFormFactory.php',
-      1 => 1633409258,
+      1 => 1633582807,
     ),
     'App\\Forms\\FormFactory' => 
     array (
@@ -22,15 +27,20 @@ return array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Forms/SignUpFormFactory.php',
       1 => 1633494842,
     ),
-    'App\\MemberModule\\Presenters\\HomepagePresenter' => 
+    'App\\MemberModule\\Presenters\\MemberDashboardPresenter' => 
     array (
-      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/MemberModule/Presenters/HomepagePresenter.php',
-      1 => 1633289674,
+      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/MemberModule/Presenters/MemberDashboardPresenter.php',
+      1 => 1633666959,
     ),
     'App\\AdminModule\\Presenters\\DashboardPresenter' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/AdminModule/Presenters/DashboardPresenter.php',
       1 => 1633409742,
+    ),
+    'App\\models\\Repository\\Table\\RoleRepository' => 
+    array (
+      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/Repository/Table/RoleRepository.php',
+      1 => 1633584556,
     ),
     'App\\models\\Repository\\Table\\UserRepository' => 
     array (
@@ -40,12 +50,22 @@ return array (
     'App\\models\\UserManager' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/UserManager.php',
-      1 => 1633497441,
+      1 => 1633667272,
     ),
     'App\\models\\DuplicateNameException' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/UserManager.php',
-      1 => 1633497441,
+      1 => 1633667272,
+    ),
+    'App\\models\\DataManager\\RoleRuleDataManager' => 
+    array (
+      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/DataManager/RoleRuleDataManager.php',
+      1 => 1633583291,
+    ),
+    'App\\models\\AuthorizatorFactory' => 
+    array (
+      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/AuthorizatorFactory.php',
+      1 => 1633584556,
     ),
     'App\\models\\BaseModel\\BaseModel' => 
     array (
@@ -85,6 +105,10 @@ return array (
   ),
   1 => 
   array (
+    'App\\AdminModule\\Presenters\\DashboardDefaultTemplate' => 3,
+    'App\\AdminModule\\Presenters\\DashboardTemplate' => 3,
+    'App\\AdminModule\\Presenters\\DashboardLoginTemplate' => 3,
+    'App\\MemberModule\\Presenters\\HomepagePresenter' => 2,
   ),
   2 => 
   array (
