@@ -105,7 +105,7 @@ return array (
     'App\\Router\\RouterFactory' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Router/RouterFactory.php',
-      1 => 1633493268,
+      1 => 1633669964,
     ),
   ),
   1 => 
@@ -116,6 +116,8 @@ return array (
     'App\\MemberModule\\Presenters\\HomepagePresenter' => 2,
     'App\\AdminModule\\Presenters\\DashboardLogoutTemplate' => 3,
     'App\\AdminModule\\Presenters\\DashboardRegisterTemplate' => 3,
+    'App\\Presenters\\HomepageDefaultTemplate' => 3,
+    'App\\Presenters\\HomepageTemplate' => 3,
   ),
   2 => 
   array (

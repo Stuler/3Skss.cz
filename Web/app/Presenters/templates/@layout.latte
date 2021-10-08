@@ -8,13 +8,17 @@
 </head>
 
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 
-	{include content}
-	<a n:href=:Admin:Dashboard:>Administrace</a>
+{include content}
+	<p>Vitejte na stránke 3skss</p>
+	<p>Pro vstup do členské sekce se <a n:href=":Admin:Dashboard:login">přihlašte</a> </p>
+	<p>
+		<a n:href=:Admin:Dashboard:>Administrace</a>
+	</p>
 
 	{block scripts}
 	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
-	{/block}
+{/block}
 </body>
 </html>
