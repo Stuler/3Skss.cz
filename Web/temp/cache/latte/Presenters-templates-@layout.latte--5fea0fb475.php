@@ -48,17 +48,12 @@ final class Template5fea0fb475 extends Latte\Runtime\Template
 	<p>Pro vstup do členské sekce se <a href="';
 		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link(":Admin:Dashboard:login")) /* line 15 */;
 		echo '">přihlašte</a> </p>
-	<p>
-		<a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link(":Admin:Dashboard:")) /* line 17 */;
-		echo '">Administrace</a>
-	</p>
 
 ';
 		if ($this->getParentName()) {
 			return get_defined_vars();
 		}
-		$this->renderBlock('scripts', get_defined_vars()) /* line 20 */;
+		$this->renderBlock('scripts', get_defined_vars()) /* line 17 */;
 		echo '
 </body>
 </html>
@@ -80,7 +75,7 @@ final class Template5fea0fb475 extends Latte\Runtime\Template
 	}
 
 
-	/** {block scripts} on line 20 */
+	/** {block scripts} on line 17 */
 	public function blockScripts(array $ʟ_args): void
 	{
 		echo '	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
