@@ -19,9 +19,9 @@ class UserManager implements Authenticator {
 	use SmartObject;
 
 	private const
-		TABLE_NAME = 'users',
+		TABLE_NAME = 'user',
 		COLUMN_ID = 'id',
-		COLUMN_NAME = 'username',
+		COLUMN_NAME = 'nick',
 		COLUMN_PASSWORD_HASH = 'password',
 		COLUMN_EMAIL = 'email',
 		COLUMN_ROLE = 'role';
@@ -115,10 +115,10 @@ class UserManager implements Authenticator {
 	/**
 	 * @throws DuplicateNameException
 	 */
-	public function add($username, $email, $password) {
+	public function add($nick, $email, $password) {
 		try {
-			$this->database->table($this->table)->insert([
-				self::COLUMN_NAME          => $username,
+			$this->db->table($this->table)->insert([
+				self::COLUMN_NAME          => $nick,
 				self::COLUMN_PASSWORD_HASH => $this->passwords->hash($password),
 				self::COLUMN_EMAIL         => $email,
 			]);

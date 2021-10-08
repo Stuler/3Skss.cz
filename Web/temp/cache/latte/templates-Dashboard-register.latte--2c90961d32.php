@@ -2,8 +2,8 @@
 
 use Latte\Runtime as LR;
 
-/** source: /Users/anythingdev/Sites/3Skss.cz/Web/app/AdminModule/Presenters/templates/Dashboard/login.latte */
-final class Template8c12619eb5 extends Latte\Runtime\Template
+/** source: /Users/anythingdev/Sites/3Skss.cz/Web/app/AdminModule/Presenters/templates/Dashboard/register.latte */
+final class Template2c90961d32 extends Latte\Runtime\Template
 {
 	protected const BLOCKS = [
 		['title' => 'blockTitle', 'content' => 'blockContent'],
@@ -44,12 +44,10 @@ final class Template8c12619eb5 extends Latte\Runtime\Template
 		extract($this->params);
 		extract($ʟ_args);
 		unset($ʟ_args);
-		/* line 3 */ $_tmp = $this->global->uiControl->getComponent("signInForm");
+		/* line 3 */ $_tmp = $this->global->uiControl->getComponent("signUpForm");
 		if ($_tmp instanceof Nette\Application\UI\Renderable) $_tmp->redrawControl(null, false);
 		$_tmp->render();
-		echo '<p><a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("register")) /* line 4 */;
-		echo '">Založení nového účtu</a></p>';
+		
 	}
 
 }

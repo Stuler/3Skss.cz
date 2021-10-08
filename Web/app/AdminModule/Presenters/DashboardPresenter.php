@@ -60,7 +60,7 @@ class DashboardPresenter extends BasePresenter {
 	}
 
 	public function actionLogout(): void {
-		$this->getUser()->logout();
+		$this->getUser()->logout(true);
 		$this->redirect('login');
 	}
 

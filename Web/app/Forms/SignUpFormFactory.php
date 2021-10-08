@@ -41,7 +41,7 @@ class SignUpFormFactory {
 
 		$form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess): void {
 			try {
-				$this->userPM->add($values->username, $values->email, $values->password);
+				$this->userPM->add($values->nick, $values->email, $values->password);
 			} catch (DuplicateNameException $e) {
 				$form['username']->addError('Username is already taken.');
 				return;

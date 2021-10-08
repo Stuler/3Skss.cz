@@ -25,7 +25,7 @@ return array (
     'App\\Forms\\SignUpFormFactory' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Forms/SignUpFormFactory.php',
-      1 => 1633494842,
+      1 => 1633669513,
     ),
     'App\\MemberModule\\Presenters\\MemberDashboardPresenter' => 
     array (
@@ -35,7 +35,7 @@ return array (
     'App\\AdminModule\\Presenters\\DashboardPresenter' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/AdminModule/Presenters/DashboardPresenter.php',
-      1 => 1633409742,
+      1 => 1633668130,
     ),
     'App\\models\\Repository\\Table\\RoleRepository' => 
     array (
@@ -50,12 +50,12 @@ return array (
     'App\\models\\UserManager' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/UserManager.php',
-      1 => 1633667272,
+      1 => 1633669593,
     ),
     'App\\models\\DuplicateNameException' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/models/UserManager.php',
-      1 => 1633667272,
+      1 => 1633669593,
     ),
     'App\\models\\DataManager\\RoleRuleDataManager' => 
     array (
@@ -85,12 +85,17 @@ return array (
     'App\\Presenters\\_core\\BasePresenter' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Presenters/_core/BasePresenter.php',
-      1 => 1633493349,
+      1 => 1633667296,
     ),
     'App\\Presenters\\_core\\SecuredPresenter' => 
     array (
       0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Presenters/_core/SecuredPresenter.php',
       1 => 1631897747,
+    ),
+    'App\\Presenters\\HomepagePresenter' => 
+    array (
+      0 => '/Users/anythingdev/Sites/3Skss.cz/Web/app/Presenters/HomepagePresenter.php',
+      1 => 1633668008,
     ),
     'App\\Presenters\\Error4xxPresenter' => 
     array (
@@ -109,6 +114,8 @@ return array (
     'App\\AdminModule\\Presenters\\DashboardTemplate' => 3,
     'App\\AdminModule\\Presenters\\DashboardLoginTemplate' => 3,
     'App\\MemberModule\\Presenters\\HomepagePresenter' => 2,
+    'App\\AdminModule\\Presenters\\DashboardLogoutTemplate' => 3,
+    'App\\AdminModule\\Presenters\\DashboardRegisterTemplate' => 3,
   ),
   2 => 
   array (
