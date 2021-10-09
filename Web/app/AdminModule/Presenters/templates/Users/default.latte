@@ -1,2 +1,8 @@
 {block content}
 <p>Vítejte ve správě uživatelů!</p>
+
+{foreach $users as $user}
+	{$user->nick} </br>
+{/foreach}
+
+{control formUser}

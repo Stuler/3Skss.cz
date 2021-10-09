@@ -88,8 +88,10 @@ class Container_a83916d415 extends Nette\DI\Container
 		'Nette\Security\Authenticator' => [['authenticator']],
 		'Nette\Security\IAuthenticator' => [['authenticator']],
 		'App\models\UserManager' => [['authenticator']],
-		'App\models\BaseModel\BaseModel' => [['userRepository']],
+		'App\models\BaseModel\BaseModel' => [['userRepository', 'squadRepository', 'rankRepository']],
 		'App\models\Repository\Table\UserRepository' => [['userRepository']],
+		'App\models\Repository\Table\SquadRepository' => [['squadRepository']],
+		'App\models\Repository\Table\RankRepository' => [['rankRepository']],
 		'App\Presenters\_core\BasePresenter' => [
 			2 => [
 				'application.1',
@@ -344,7 +346,11 @@ class Container_a83916d415 extends Nette\DI\Container
 
 	public function createServiceApplication__2(): App\AdminModule\Presenters\UsersPresenter
 	{
-		$service = new App\AdminModule\Presenters\UsersPresenter;
+		$service = new App\AdminModule\Presenters\UsersPresenter(
+			$this->getService('userRepository'),
+			$this->getService('squadRepository'),
+			$this->getService('rankRepository')
+		);
 		$service->injectPrimary(
 			$this,
 			$this->getService('application.presenterFactory'),
@@ -662,6 +668,12 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
+	public function createServiceRankRepository(): App\models\Repository\Table\RankRepository
+	{
+		return new App\Models\Repository\Table\RankRepository($this->getService('database.default.context'));
+	}
+
+
 	public function createServiceSecurity__authorizator(): Nette\Security\Authorizator
 	{
 		$service = new Nette\Security\Permission;
@@ -715,6 +727,12 @@ class Container_a83916d415 extends Nette\DI\Container
 		$service->setExpiration('14 days');
 		$service->setOptions(['cookieSamesite' => 'Lax']);
 		return $service;
+	}
+
+
+	public function createServiceSquadRepository(): App\models\Repository\Table\SquadRepository
+	{
+		return new App\Models\Repository\Table\SquadRepository($this->getService('database.default.context'));
 	}
 
 

@@ -42,4 +42,12 @@ services:
 		factory: App\Models\Repository\Table\UserRepository
 		inject: true
 
+	squadRepository:
+		factory: App\Models\Repository\Table\SquadRepository
+		inject: true
+
+	rankRepository:
+		factory: App\Models\Repository\Table\RankRepository
+		inject: true
+
 

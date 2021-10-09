@@ -24,6 +24,11 @@ final class Template8519eaf1ab extends Latte\Runtime\Template
 	public function prepare(): void
 	{
 		extract($this->params);
+		if (!$this->getReferringTemplate() || $this->getReferenceType() === "extends") {
+			foreach (array_intersect_key(['user' => '4'], $this->params) as $ʟ_v => $ʟ_l) {
+				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
+			}
+		}
 		Nette\Bridges\ApplicationLatte\UIRuntime::initialize($this, $this->parentName, $this->blocks);
 		
 	}
@@ -32,7 +37,25 @@ final class Template8519eaf1ab extends Latte\Runtime\Template
 	/** {block content} on line 1 */
 	public function blockContent(array $ʟ_args): void
 	{
-		echo '<p>Vítejte ve správě uživatelů!</p>';
+		extract($this->params);
+		extract($ʟ_args);
+		unset($ʟ_args);
+		echo '<p>Vítejte ve správě uživatelů!</p>
+
+';
+		$iterations = 0;
+		foreach ($users as $user) /* line 4 */ {
+			echo '	';
+			echo LR\Filters::escapeHtmlText($user->nick) /* line 5 */;
+			echo ' </br>
+';
+			$iterations++;
+		}
+		echo "\n";
+		/* line 8 */ $_tmp = $this->global->uiControl->getComponent("formUser");
+		if ($_tmp instanceof Nette\Application\UI\Renderable) $_tmp->redrawControl(null, false);
+		$_tmp->render();
+		
 	}
 
 }
