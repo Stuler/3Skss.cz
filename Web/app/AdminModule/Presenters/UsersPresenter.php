@@ -4,7 +4,9 @@ declare(strict_types=1);
 namespace App\AdminModule\Presenters;
 
 use App\models\DataSource\Form\UserException;
+use App\models\DataSource\Form\UserFormDataSource;
 use App\models\Repository\Table\RankRepository;
+use App\models\Repository\Table\RoleRepository;
 use App\models\Repository\Table\SquadRepository;
 use App\models\Repository\Table\UserRepository;
 use App\Presenters\_core\BasePresenter;
@@ -29,10 +31,18 @@ class UsersPresenter extends BasePresenter {
 	/** @var RankRepository */
 	private $rankRepo;
 
-	public function __construct(UserRepository $userRepo, SquadRepository $squadRepo, RankRepository $rankRepo) {
+	/** @var UserFormDataSource */
+	private $userFormDS;
+
+	/** @var RoleRepository */
+	private $roleRepo;
+
+	public function __construct(UserRepository $userRepo, SquadRepository $squadRepo, RankRepository $rankRepo, UserFormDataSource $userFormDS, RoleRepository $roleRepo) {
 		$this->userRepo = $userRepo;
 		$this->squadRepo = $squadRepo;
 		$this->rankRepo = $rankRepo;
+		$this->userFormDS = $userFormDS;
+		$this->roleRepo = $roleRepo;
 	}
 
 	public function renderDefault() {
@@ -49,12 +59,16 @@ class UsersPresenter extends BasePresenter {
 		$form->addText('nick', 'Nick')->setRequired();
 		$form->addText('date_created', 'Členem od')->setRequired();
 
+		$roles = $this->roleRepo->fetchPairs('id', 'name');
+		$form->addSelect('role', 'Oprávnění', $roles);
+
 		$rank = $this->rankRepo->findAll()->fetchPairs('id', 'name');
 		$form->addSelect('rank_id', 'Hodnost', $rank);
 
 		$squad = $this->squadRepo->findAll()->fetchPairs('id', 'name');
 		$form->addSelect('squad_id', 'Četa', $squad);
 
+		$form->addInteger('tactical_points', 'Taktické body');
 		$form->addInteger('penalty', 'Žlutá karta');
 
 		$choices = ['ano', 'ne', 'probíhá'];
@@ -87,15 +101,10 @@ class UsersPresenter extends BasePresenter {
 
 		$form->onSuccess[] = function (Form $form, TFormUser $values) {
 			try {
-				$id = $this->jobFormDS->save($values);
-				if ($values->id == "") {
-					$this->flashMessage('Spuštěn nový pracovní výkaz.', 'ok');
-				} else {
-					$this->flashMessage('Pracovní výkaz zastaven.', 'ok');
-				}
-				$form->refreshForm(null, "formJob");
-				$this->redrawControl();
-				$this->onChange();
+				$id = $this->userFormDS->save($values);
+				$this->flashMessage('Změny byly provedeny.', 'ok');
+				$this->flashMessage('Pracovní výkaz zastaven.', 'ok');
+				$this->redirect('this');
 			} catch (UserException $e) {
 				$this->flashMessage($e->getMessage(), 'err');
 			}

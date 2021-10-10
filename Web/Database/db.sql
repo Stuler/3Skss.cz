@@ -7,6 +7,17 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 SET NAMES utf8mb4;
 
+CREATE TABLE `course_completition_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) COLLATE utf8mb4_czech_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;
+
+INSERT INTO `course_completition_type` (`id`, `name`) VALUES
+(1,	'Splněn'),
+(2,	'Nesplněn'),
+(3,	'Probíhá');
+
 CREATE TABLE `rank` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text COLLATE utf8mb4_czech_ci NOT NULL,
@@ -113,4 +124,4 @@ INSERT INTO `user` (`id`, `nick`, `email`, `password`, `role`, `date_created`, `
 (1,	'admin',	'peter.jurek@gmail.com',	'$2y$10$tH9goK/PKe4oeXMMsSNxXOJ/gY3oP1A0cmHVAEW8jwL4w.90D..l.',	'admin',	'2021-09-15 08:53:41',	'2021-10-08 04:33:56',	NULL,	NULL,	NULL,	5,	NULL,	5,	1,	1,	0,	0,	0,	8,	NULL,	1,	1,	1,	1,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0),
 (2,	'test',	'peter.jurek@gmail.com',	'$2y$10$DQ2jYHut5v2skx6iRT3rIOMG1/2JNcNzih6I2symGvX4hIbv94noW',	'member',	'2021-10-05 06:51:10',	'2021-10-08 04:34:16',	NULL,	NULL,	NULL,	4,	NULL,	4,	0,	0,	0,	0,	0,	NULL,	NULL,	1,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0,	0),
 
--- 2021-10-09 11:24:57
+-- 2021-10-10 12:08:57

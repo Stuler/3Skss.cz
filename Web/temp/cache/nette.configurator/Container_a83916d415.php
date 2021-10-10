@@ -88,10 +88,12 @@ class Container_a83916d415 extends Nette\DI\Container
 		'Nette\Security\Authenticator' => [['authenticator']],
 		'Nette\Security\IAuthenticator' => [['authenticator']],
 		'App\models\UserManager' => [['authenticator']],
-		'App\models\BaseModel\BaseModel' => [['userRepository', 'squadRepository', 'rankRepository']],
+		'App\models\BaseModel\BaseModel' => [['userRepository', 'squadRepository', 'rankRepository', 'roleRepository']],
 		'App\models\Repository\Table\UserRepository' => [['userRepository']],
 		'App\models\Repository\Table\SquadRepository' => [['squadRepository']],
 		'App\models\Repository\Table\RankRepository' => [['rankRepository']],
+		'App\models\Repository\Table\RoleRepository' => [['roleRepository']],
+		'App\models\DataSource\Form\UserFormDataSource' => [['userFormDataSource']],
 		'App\Presenters\_core\BasePresenter' => [
 			2 => [
 				'application.1',
@@ -349,7 +351,9 @@ class Container_a83916d415 extends Nette\DI\Container
 		$service = new App\AdminModule\Presenters\UsersPresenter(
 			$this->getService('userRepository'),
 			$this->getService('squadRepository'),
-			$this->getService('rankRepository')
+			$this->getService('rankRepository'),
+			$this->getService('userFormDataSource'),
+			$this->getService('roleRepository')
 		);
 		$service->injectPrimary(
 			$this,
@@ -674,6 +678,12 @@ class Container_a83916d415 extends Nette\DI\Container
 	}
 
 
+	public function createServiceRoleRepository(): App\models\Repository\Table\RoleRepository
+	{
+		return new App\Models\Repository\Table\RoleRepository($this->getService('database.default.context'));
+	}
+
+
 	public function createServiceSecurity__authorizator(): Nette\Security\Authorizator
 	{
 		$service = new Nette\Security\Permission;
@@ -751,6 +761,12 @@ class Container_a83916d415 extends Nette\DI\Container
 	public function createServiceTracy__logger(): Tracy\ILogger
 	{
 		return Tracy\Debugger::getLogger();
+	}
+
+
+	public function createServiceUserFormDataSource(): App\models\DataSource\Form\UserFormDataSource
+	{
+		return new App\Models\DataSource\Form\UserFormDataSource;
 	}
 
 

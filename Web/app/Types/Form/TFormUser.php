@@ -7,9 +7,14 @@ class TFormUser {
 
 	public $id;
 	public $nick;
+	public $email;
+	public $password;
+	public $role;
 	public $date_created;
 	public $rank_id;
 	public $squad_id;
+	public $squad_pos;
+	public $tactical_points;
 	public $penalty;
 	public $is_active;
 	public $is_basic_infantry;

@@ -50,4 +50,11 @@ services:
 		factory: App\Models\Repository\Table\RankRepository
 		inject: true
 
+	roleRepository:
+		factory: App\Models\Repository\Table\RoleRepository
+		inject: true
+
+	userFormDataSource:
+		factory: App\Models\DataSource\Form\UserFormDataSource
+		inject: true
 
