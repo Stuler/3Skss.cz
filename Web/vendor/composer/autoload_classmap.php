@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Latte\\Attributes\\TemplateFilter' => $vendorDir . '/latte/latte/src/Latte/attributes.php',
     'Latte\\Attributes\\TemplateFunction' => $vendorDir . '/latte/latte/src/Latte/attributes.php',
     'Latte\\Bridges\\Tracy\\BlueScreenPanel' => $vendorDir . '/latte/latte/src/Bridges/Tracy/BlueScreenPanel.php',
@@ -410,6 +412,17 @@ return array(
     'Nette\\Utils\\Strings' => $vendorDir . '/nette/utils/src/Utils/Strings.php',
     'Nette\\Utils\\UnknownImageFileException' => $vendorDir . '/nette/utils/src/Utils/exceptions.php',
     'Nette\\Utils\\Validators' => $vendorDir . '/nette/utils/src/Utils/Validators.php',
+    'Nextras\\Migrations\\Drivers\\MySqlNetteDbDriver' => $vendorDir . '/nextras/migrations/src/deprecated/MySqlNetteDbDriver.php',
+    'Nextras\\Migrations\\Drivers\\PgSqlNetteDbDriver' => $vendorDir . '/nextras/migrations/src/deprecated/PgSqlNetteDbDriver.php',
+    'Nextras\\Migrations\\Exception' => $vendorDir . '/nextras/migrations/src/exceptions.php',
+    'Nextras\\Migrations\\ExecutionException' => $vendorDir . '/nextras/migrations/src/exceptions.php',
+    'Nextras\\Migrations\\Extensions\\DbPhp' => $vendorDir . '/nextras/migrations/src/deprecated/DbPhp.php',
+    'Nextras\\Migrations\\Extensions\\NetteDbSql' => $vendorDir . '/nextras/migrations/src/deprecated/NetteDbSql.php',
+    'Nextras\\Migrations\\Extensions\\SimplePhp' => $vendorDir . '/nextras/migrations/src/deprecated/SimplePhp.php',
+    'Nextras\\Migrations\\IOException' => $vendorDir . '/nextras/migrations/src/exceptions.php',
+    'Nextras\\Migrations\\LockException' => $vendorDir . '/nextras/migrations/src/exceptions.php',
+    'Nextras\\Migrations\\LogicException' => $vendorDir . '/nextras/migrations/src/exceptions.php',
+    'Nextras\\Migrations\\RuntimeException' => $vendorDir . '/nextras/migrations/src/exceptions.php',
     'Nittro\\Bridges\\NittroDI\\NittroExtension' => $vendorDir . '/nittro/nette-bridges/src/Bridges/NittroDI/NittroExtension.php',
     'Nittro\\Bridges\\NittroLatte\\NittroMacros' => $vendorDir . '/nittro/nette-bridges/src/Bridges/NittroLatte/NittroMacros.php',
     'Nittro\\Bridges\\NittroLatte\\NittroRuntime' => $vendorDir . '/nittro/nette-bridges/src/Bridges/NittroLatte/NittroRuntime.php',
@@ -417,6 +430,8 @@ return array(
     'Nittro\\Bridges\\NittroUI\\Helpers' => $vendorDir . '/nittro/nette-bridges/src/Bridges/NittroUI/Helpers.php',
     'Nittro\\Bridges\\NittroUI\\Presenter' => $vendorDir . '/nittro/nette-bridges/src/Bridges/NittroUI/Presenter.php',
     'Nittro\\Bridges\\NittroUI\\PresenterUtils' => $vendorDir . '/nittro/nette-bridges/src/Bridges/NittroUI/PresenterUtils.php',
+    'Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
+    'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'Tester\\Assert' => $vendorDir . '/nette/tester/src/Framework/Assert.php',
     'Tester\\AssertException' => $vendorDir . '/nette/tester/src/Framework/AssertException.php',
     'Tester\\CodeCoverage\\Collector' => $vendorDir . '/nette/tester/src/CodeCoverage/Collector.php',
@@ -470,4 +485,6 @@ return array(
     'Tracy\\ILogger' => $vendorDir . '/tracy/tracy/src/Tracy/Logger/ILogger.php',
     'Tracy\\Logger' => $vendorDir . '/tracy/tracy/src/Tracy/Logger/Logger.php',
     'Tracy\\OutputDebugger' => $vendorDir . '/tracy/tracy/src/Tracy/OutputDebugger/OutputDebugger.php',
+    'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+    'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
 );

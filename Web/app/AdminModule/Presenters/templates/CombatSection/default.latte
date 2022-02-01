@@ -1,0 +1,54 @@
+{block content}
+
+<a n:href="Dashboard:default ">Návrat do administrace</a>
+<a n:href="Centers:default">Návrat do ORBAT</a>
+
+<h2>2. Bojové středisko</h2>
+
+<div>
+	<a class="ajax" n:href="createDetachment! centerId=>3">Vytvořit odřad</a>
+</div>
+
+<div>
+	<a class="ajax" n:href="createSquad! squadTypeId=>2, centerId=>3">Vytvořit team</a>
+</div>
+
+{snippet modalFormSquad}
+	{if isset($showModal)}
+		<div class="modal-content">
+			<a class="ajax float-right" n:href="closeModal!">X</a>
+			{if $modalName == 'FormDetachment'}
+				{control formDetachment}
+			{elseif $modalName == 'FormSquad'}
+				{control formSquad}
+			{/if}
+		</div>
+	{/if}
+{/snippet}
+
+<div>
+	{foreach $detachments as $detachment}
+		<ul>
+			<a class="ajax" n:href="editDetachment! detachmentId=>$detachment->id">{$detachment->name}</a>
+			{foreach $squads as $squad}
+				{if $squad->detachment_id == $detachment->id}
+					<li>
+						<a class="ajax" n:href="editSquad! squadId=>$squad->id, centerId => null">{$squad->name}</a>
+					</li>
+					<ul>
+						{foreach $activeUsers as $activeUser}
+							{if $activeUser->squad_id == $squad->id}
+								<li>
+									<a n:href="users:edit userId=>$activeUser->id">{$activeUser->nick}</a>
+								</li>
+							{/if}
+						{/foreach}
+					</ul>
+				{/if}
+			{/foreach}
+		</ul>
+	{/foreach}
+</div>
+
+
+

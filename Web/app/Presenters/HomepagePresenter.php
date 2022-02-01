@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Presenters;
 
-class HomepagePresenter extends \Nette\Application\UI\Presenter {
+use Nette\Application\UI\Presenter;
+
+class HomepagePresenter extends Presenter {
 
 }

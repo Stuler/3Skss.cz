@@ -15,7 +15,7 @@ class UserRepository extends BaseModel {
 	 * Zákl. dotaz vracia nezmazané záznamy
 	 */
 	public function findAllActive(): Selection {
-		return $this->findAll()->where('date_deleted IS NULL');
+		return $this->findAll()->where('user.date_deleted IS NULL');
 	}
 
 	/**

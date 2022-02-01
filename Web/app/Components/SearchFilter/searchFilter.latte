@@ -1,0 +1,13 @@
+{block content}
+
+{if $isShowFilter}
+	{snippet formFilter}
+		{control formFilter}
+	{/snippet}
+{/if}
+
+{if $isShowSearch}
+	{snippet formSearch}
+		{form formSearch} {input term} {input send} {input clear}{/form}
+	{/snippet}
+{/if}

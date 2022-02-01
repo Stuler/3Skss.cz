@@ -1,0 +1,119 @@
+{block content}
+<p>ORBAT</p>
+
+<div><a n:href=":Admin:Dashboard:default">Návrat do administrace</a>
+	<a n:href=":Admin:Dashboard:logout">Odhlásit</a></div></br>
+
+{*<div>*}
+{*	<a class="ajax" n:href="showModal! name=>'FormCenter'">Vytvořit středisko</a>*}
+{*</div>*}
+
+<div>
+	<a class="ajax" n:href="showModal! name=>'FormDetachment'">Vytvořit odřad</a>
+</div>
+
+<div>
+	<a class="ajax" n:href="showModal! name=>'FormSquad'">Vytvořit team/kancelář</a>
+</div>
+
+<div>
+	<ul>
+
+		<div>
+			<li>
+				<a n:href="Command:default">Velitelské středisko</a>
+				<ul>
+					{foreach $squads as $squad}
+						{if $squad->center_id == 1}
+							<li>
+								<a class="ajax" n:href="editSquad! squadId=>$squad->id, centerId => null">{$squad->name}</a>
+							</li>
+							<ul>
+								{foreach $activeUsers as $activeUser}
+									{if ($activeUser->squad_id == $squad->id) && ($activeUser->is_super_admin == 0)}
+										<li>
+											<a n:href="users:edit userId=>$activeUser->id">{$activeUser->nick}</a>
+										</li>
+									{/if}
+								{/foreach}
+							</ul>
+						{/if}
+					{/foreach}
+
+				</ul>
+			</li>
+		</div>
+
+		<div>
+			<li>
+				<a n:href="TrainingCenter:default">1. Středisko Speciálního Výcviku</a>
+				<ul>
+					{foreach $squads as $squad}
+						{if $squad->center_id == 2}
+							<li>
+								<a class="ajax" n:href="editSquad! squadId=>$squad->id, centerId => null">{$squad->name}</a>
+							</li>
+							<ul>
+								{foreach $activeUsers as $activeUser}
+									{if ($activeUser->squad_id == $squad->id) && ($activeUser->is_super_admin == 0)}
+										<li>
+											<a n:href="users:edit userId=>$activeUser->id">{$activeUser->nick}</a>
+										</li>
+									{/if}
+								{/foreach}
+							</ul>
+						{/if}
+					{/foreach}
+
+				</ul>
+			</li>
+		</div>
+
+		<div>
+			<li>
+				<a n:href="CombatSection:default">2. Bojové středisko</a>
+				<ul>
+					{foreach $detachments as $detachment}
+						{if $detachment->center_id == 3}
+							<a class="ajax" n:href="editDetachment! detachmentId=>$detachment->id">{$detachment->name}</a>
+							<ul>
+								{foreach $squads as $squad}
+									{if $squad->detachment_id == $detachment->id}
+										<li>
+											<a class="ajax" n:href="editSquad! squadId=>$squad->id, centerId => null">{$squad->name}</a>
+										</li>
+										<ul>
+											{foreach $activeUsers as $activeUser}
+												{if ($activeUser->squad_id == $squad->id) && ($activeUser->is_super_admin == 0)}
+													<li>
+														<a n:href="Users:view userId=>$activeUser->id">{$activeUser->nick}</a>
+													</li>
+												{/if}
+											{/foreach}
+										</ul>
+									{/if}
+								{/foreach}
+							</ul>
+						{/if}
+					{/foreach}
+				</ul>
+			</li>
+		</div>
+
+	</ul>
+</div>
+
+{snippet modalFormSquad}
+	{if isset($showModal)}
+		<div class="modal-content">
+			<a class="ajax float-right" n:href="closeModal!">X</a>
+			{if $modalName == 'FormCenter'}
+				{control formCenter}
+			{elseif $modalName == 'FormDetachment'}
+				{control formDetachment}
+			{elseif $modalName == 'FormSquad'}
+				{control formSquad}
+			{/if}
+		</div>
+	{/if}
+{/snippet}

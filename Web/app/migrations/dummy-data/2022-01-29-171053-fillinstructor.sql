@@ -1,0 +1,2 @@
+INSERT INTO `instructor` (`id`, `user_id`, `course_id`, `note`, `date_created`, `created_by`, `date_modified`, `date_deleted`, `deleted_by`) VALUES
+(27,	2,	16,	NULL,	'2022-01-29 15:40:55',	2,	NULL,	NULL,	NULL);

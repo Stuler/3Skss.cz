@@ -1,0 +1,74 @@
+{block content}
+
+<a n:href=":Admin:ServerManager:default">Návrat do Server manageru</a>
+
+<h2>Seznam addonů</h2>
+
+{control formSearch}
+
+<p>
+	{if $showDownloaded}
+		<a n:href="filterDownloaded! status=>false">Ukázat všechny</a>
+	{else}
+		<a n:href="filterDownloaded! status=>true">Ukázat pouze stažené</a>
+	{/if}
+</p>
+{*<p>*}
+{*	{if $sorted}*}
+{*		<a n:href="sortByStatus! status=>false">Seřadit podle ID</a>*}
+{*	{else}*}
+{*		<a n:href="sortByStatus! status=>true">Seřadit podle stavu</a>*}
+{*	{/if}*}
+{*</p>*}
+
+{snippet addons}
+	<table>
+		<thead>
+		<tr>
+			<th>
+				{if $sorted}
+					<a n:href="sort! status=>false, column=>'addon_id', order=>'ASC'">Steam ID</a>
+				{else}
+					<a n:href="sort! status=>true, column=>'addon_id', order=>'ASC'">Steam ID</a>
+				{/if}
+			</th>
+			<th>
+				{if $sorted}
+					<a n:href="sort! status=>false, column=>'addon_name', order=>'ASC'">Název</a>
+				{else}
+					<a n:href="sort! status=>true, column=>'addon_name', order=>'ASC'">Název</a>
+				{/if}
+			</th>
+			<th>
+				{if $sorted}
+					<a n:href="sort! status=>false, column=>'addon_size_bytes', order=>'ASC'">Velikost addonu [MB]</a>
+				{else}
+					<a n:href="sort! status=>true, column=>'addon_size_bytes', order=>'ASC'">Velikost addonu [MB]</a>
+				{/if}
+			</th>
+			<th>
+				{if $sorted}
+					<a n:href="sort! status=>false, column=>'status', order=>'DESC'">Stav</a>
+				{else}
+					<a n:href="sort! status=>true, column=>'status', order=>'DESC'">Stav</a>
+				{/if}
+			</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		{foreach $addons as $addon}
+			<tr>
+				<td><a href="https://steamcommunity.com/sharedfiles/filedetails/?id={$addon[addon_id]}">{$addon[addon_id]}</a></td>
+				<td>{$addon[addon_name]}</td>
+				<td>{$addon[addon_size_bytes] * pow(10,-6)}</td>
+				{if !$addon[status]}
+					<td bgcolor="red"></td>
+				{else}
+					<td bgcolor="#90ee90"></td>
+				{/if}
+			</tr>
+		{/foreach}
+		</tbody>
+	</table>
+{/snippet}

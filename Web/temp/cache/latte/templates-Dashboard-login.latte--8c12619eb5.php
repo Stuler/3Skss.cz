@@ -47,9 +47,7 @@ final class Template8c12619eb5 extends Latte\Runtime\Template
 		/* line 3 */ $_tmp = $this->global->uiControl->getComponent("signInForm");
 		if ($_tmp instanceof Nette\Application\UI\Renderable) $_tmp->redrawControl(null, false);
 		$_tmp->render();
-		echo '<p><a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("register")) /* line 4 */;
-		echo '">Založení nového účtu</a></p>';
+		
 	}
 
 }

@@ -25,7 +25,7 @@ final class Template8519eaf1ab extends Latte\Runtime\Template
 	{
 		extract($this->params);
 		if (!$this->getReferringTemplate() || $this->getReferenceType() === "extends") {
-			foreach (array_intersect_key(['user' => '4'], $this->params) as $ʟ_v => $ʟ_l) {
+			foreach (array_intersect_key(['member' => '23'], $this->params) as $ʟ_v => $ʟ_l) {
 				trigger_error("Variable \$$ʟ_v overwritten in foreach on line $ʟ_l");
 			}
 		}
@@ -40,22 +40,74 @@ final class Template8519eaf1ab extends Latte\Runtime\Template
 		extract($this->params);
 		extract($ʟ_args);
 		unset($ʟ_args);
-		echo '<p>Vítejte ve správě uživatelů!</p>
+		echo '
+<h2>Správa uživatelů</h2>
+<div><a href="';
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link(":Admin:Dashboard:default")) /* line 4 */;
+		echo '">Návrat do administrace</a>
+	<a href="';
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("logout")) /* line 5 */;
+		echo '">Odhlásit</a></div></br>
+<div><a href="';
+		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("edit")) /* line 6 */;
+		echo '">Vytvoření nového člena</a></div></br>
 
+<table>
+	<thead>
+	<tr>
+		<th colspan="5">Základní informace</th>
+
+	</tr>
+	<tr>
+		<th>Nick</th>
+		<th>Vstup</th>
+		<th>Hodnost</th>
+		<th>Četa</th>
+		<th>Žlutá karta</th>
+	</tr>
+	</thead>
+	<tbody>
 ';
 		$iterations = 0;
-		foreach ($users as $user) /* line 4 */ {
-			echo '	';
-			echo LR\Filters::escapeHtmlText($user->nick) /* line 5 */;
-			echo ' </br>
+		foreach ($members as $member) /* line 23 */ {
+			echo '		<tr>
+			<th>
+				<a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("view", ['userId'=>$member->id])) /* line 26 */;
+			echo '">';
+			echo LR\Filters::escapeHtmlText($member->nick) /* line 26 */;
+			echo '</a>
+			</th>
+			<th>
+				';
+			echo LR\Filters::escapeHtmlText(($this->filters->date)($member->date_created, '%d.%m.%Y')) /* line 29 */;
+			echo '
+			</th>
+			<th>
+				';
+			echo LR\Filters::escapeHtmlText($member->rank->name) /* line 32 */;
+			echo '
+			</th>
+			<th>
+				';
+			echo LR\Filters::escapeHtmlText($member->squad['name']) /* line 35 */;
+			echo LR\Filters::escapeHtmlText($member->squad_pos) /* line 35 */;
+			echo '
+			</th>
+			<th>
+				';
+			echo LR\Filters::escapeHtmlText($member->penalty) /* line 38 */;
+			echo '
+			</th>
+		</tr>
 ';
 			$iterations++;
 		}
-		echo "\n";
-		/* line 8 */ $_tmp = $this->global->uiControl->getComponent("formUser");
-		if ($_tmp instanceof Nette\Application\UI\Renderable) $_tmp->redrawControl(null, false);
-		$_tmp->render();
-		
+		echo '	</tbody>
+</table>
+
+
+';
 	}
 
 }

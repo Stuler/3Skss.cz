@@ -1,2 +1,18 @@
 {block content}
-<p>Kalendář akcí</p>
+<a n:href=":Admin:Dashboard:default">Návrat do administrace</a>
+
+<h2>Kalendář akcí</h2>
+
+<h3> Události</h3>
+<ul>
+	{foreach $events as $event}
+		<li>
+			<a n:href="events:edit eventId=>$event[id]">{$event[name]}</a> {$event[date_from]}<br>
+		</li>
+	{/foreach}
+</ul>
+
+<div>
+	<a n:href="edit">Vytvořit novou událost<a>
+</div>
+

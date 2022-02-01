@@ -1,0 +1,44 @@
+{block content}
+
+{form formDetachment}
+
+	<div>
+		{label name}
+		{input name}
+	</div>
+
+	<div>
+		{label abbreviation}
+		{input abbreviation}
+	</div>
+
+	<div>
+		{label description}
+		{input description}
+	</div>
+
+	<div>
+		{label center_id}
+		{input center_id}
+	</div>
+
+	<div>
+		{label is_active}
+		{input is_active}
+	</div>
+
+	<div>
+		{label note}
+		{input note}
+	</div>
+
+	<div>
+		{label save}
+		{input save}
+	</div>
+
+	{if $isEdit}
+		<a n:href="deleteDetachment! id=>$detachmentId">Odstranit</a>
+	{/if}
+
+{/form}

@@ -21,7 +21,9 @@
 		"latte/latte": "^2.9",
 		"tracy/tracy": "^2.8",
 		"nittro/nette-bridges": "^2.1",
-		"tomaj/nette-bootstrap-form": "^2.0"
+		"tomaj/nette-bootstrap-form": "^2.0",
+		"nextras/migrations": "^3.1",
+		"contributte/console": "^0.9.1"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",

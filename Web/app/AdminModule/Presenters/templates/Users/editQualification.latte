@@ -1,0 +1,23 @@
+{block content}
+<div><a n:href="users:edit qualificationId=>null, courseId=>null">Návrat na editaci člena</a></div>
+
+<p>
+	{foreach $courses as $course}
+		<a n:href="editUserQualification! courseId =>$course[id]">{$course[name]}</a><br>
+	{/foreach}
+</p>
+
+{snippet form}
+	<main class="col-sm-4">
+		<div class="form-group">
+			{snippet modal}
+				{if isset($showModal)}
+					<div class="modal-content">
+						{control formUserQualification}
+{*						<a class="ajax float-right" n:href="closeModal!">Zavřít</a>*}
+					</div>
+				{/if}
+			{/snippet}
+		</div>
+	</main>
+{/snippet}

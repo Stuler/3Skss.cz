@@ -1,0 +1,60 @@
+{block content}
+{snippet userDetail}
+
+	<div>
+		<h2>{$currentUser->rank->name} {$currentUser->nick}</h2>
+	</div>
+
+	<div class="container">
+		<h3>Základní informace</h3>
+
+		<div>Datum registrace: {$currentUser->date_created|date:'%d-%m-%Y'}</div>
+		<div>Discord ID: {$currentUser->discord_id}</div>
+		<div>Steam ID: {$currentUser->steam_id}</div>
+	</div>
+
+	<div class="container">
+		<h3>Bojové zařazení</h3>
+		{if $currentUser->squad}
+			<div>Jednotka: {$currentUser->squad->detachment->name}</div>
+			<div>Pozice: {$currentUser->squad->abbreviation}-{$currentUser->squad_pos}</div>
+		{else}
+			<div>Jednotka: Nepřirazeno</div>
+		{/if}
+	</div>
+
+	<div class="container">
+		<h3>Administrativní zařazení</h3>
+		<ul>
+
+			{if $currentUser->is_admin}
+				<li>
+					Člen velení skupiny
+				</li>
+			{/if}
+
+		{if $currentUser->squad_pos == 1}
+				<li>
+					Velitel jednotky: {$currentUser->squad->name}
+				</li>
+			{/if}
+				{foreach $instructors as $instructor}
+				{if $currentUser->id == $instructor->user_id}
+					<li>
+						Instruktor: {$instructor->course->name}
+					</li>
+				{/if}
+			{/foreach}
+		</ul>
+	</div>
+
+	<div class="container">
+		<h3>Kvalifikace</h3>
+
+	</div>
+
+{/snippet}
+
+
+
+

@@ -1,8 +1,45 @@
 {block content}
-<p>Vítejte ve správě uživatelů!</p>
 
-{foreach $users as $user}
-	{$user->nick} </br>
-{/foreach}
+<h2>Správa uživatelů</h2>
+<div><a n:href=":Admin:Dashboard:default">Návrat do administrace</a>
+	<a n:href="logout">Odhlásit</a></div></br>
+<div><a n:href="edit">Vytvoření nového člena</a></div></br>
 
-{control formUser}
+<table>
+	<thead>
+	<tr>
+		<th colspan="5">Základní informace</th>
+
+	</tr>
+	<tr>
+		<th>Nick</th>
+		<th>Vstup</th>
+		<th>Hodnost</th>
+		<th>Četa</th>
+		<th>Žlutá karta</th>
+	</tr>
+	</thead>
+	<tbody>
+	{foreach $members as $member}
+		<tr>
+			<th>
+				<a n:href="view userId=>$member->id">{$member->nick}</a>
+			</th>
+			<th>
+				{$member->date_created|date:'%d.%m.%Y'}
+			</th>
+			<th>
+				{$member->rank->name}
+			</th>
+			<th>
+				{$member->squad['name']}{$member->squad_pos}
+			</th>
+			<th>
+				{$member->penalty}
+			</th>
+		</tr>
+	{/foreach}
+	</tbody>
+</table>
+
+

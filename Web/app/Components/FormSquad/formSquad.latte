@@ -1,0 +1,52 @@
+{templateType App\Components\FormSquad\TFormSquadTemplate}
+
+{form formSquad}
+	<div>
+		{label name}
+		{input name}
+	</div>
+
+	<div>
+		{label abbreviation}
+		{input abbreviation}
+	</div>
+
+	<div>
+		{label description}
+		{input description}
+	</div>
+
+	<div>
+		{label squad_type_id}
+		{input squad_type_id}
+	</div>
+
+	<div>
+		{label center_id}
+		{input center_id}
+	</div>
+
+	<div>
+		{label detachment_id}
+		{input detachment_id}
+	</div>
+
+	<div>
+		{label is_active}
+		{input is_active}
+	</div>
+
+	<div>
+		{label note}
+		{input note}
+	</div>
+
+	<div>
+		{label save}
+		{input save}
+	</div>
+
+	{if $isEdit}
+		<a n:href="deleteSquad! id=>$squadId">Odstranit</a>
+	{/if}
+{/form}

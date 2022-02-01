@@ -1,0 +1,21 @@
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_type_id` int(9) NOT NULL,
+  `name` text COLLATE utf8mb4_czech_ci NOT NULL,
+  `date_from` datetime NOT NULL,
+  `date_to` datetime NOT NULL,
+  `description` text COLLATE utf8mb4_czech_ci NOT NULL,
+  `slots_count` int(11) DEFAULT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `date_deleted` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `zeus` int(11) DEFAULT NULL,
+  `instructor` int(11) DEFAULT NULL,
+  `deleted_by` int(9) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `event_type_id` (`event_type_id`),
+  KEY `instructor` (`instructor`),
+  CONSTRAINT `event_ibfk_1` FOREIGN KEY (`event_type_id`) REFERENCES `event_type` (`id`),
+  CONSTRAINT `event_ibfk_2` FOREIGN KEY (`instructor`) REFERENCES `instructor` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;

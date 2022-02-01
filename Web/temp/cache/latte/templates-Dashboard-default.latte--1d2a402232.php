@@ -35,35 +35,51 @@ final class Template1d2a402232 extends Latte\Runtime\Template
 		extract($this->params);
 		extract($ʟ_args);
 		unset($ʟ_args);
-		echo '<p>Vítejte v administraci!</p>
+		echo '<h1>Vítejte v administraci!</h1>
 
 ';
-		if ($user->isInRole('admin')) /* line 4 */ {
-			echo '<p><a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Users:default")) /* line 4 */;
-			echo '">Správa uživatelů</a></p>
+		if (!$user->isLoggedIn()) /* line 4 */ {
+			echo '<p>Pro přístup do administrátorské sekce se <a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Dashboard:login")) /* line 4 */;
+			echo '">přihlašte</a>!</p>
 ';
 		}
 		if ($user->isInRole('admin')) /* line 5 */ {
 			echo '<p><a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Teams:default")) /* line 5 */;
-			echo '">ORBAT</a></p>
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Users:default")) /* line 5 */;
+			echo '">Správa uživatelů</a></p>
 ';
 		}
 		if ($user->isInRole('admin')) /* line 6 */ {
 			echo '<p><a href="';
-			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Events:default")) /* line 6 */;
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Centers:default")) /* line 6 */;
+			echo '">ORBAT</a></p>
+';
+		}
+		if ($user->isInRole('admin')) /* line 7 */ {
+			echo '<p><a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("Events:default")) /* line 7 */;
 			echo '">Kalendář akcí</a></p>
 ';
 		}
-		if (!$user->isInRole('admin')) /* line 7 */ {
+		if ($user->isInRole('admin')) /* line 8 */ {
+			echo '<p><a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("ServerManager:default")) /* line 8 */;
+			echo '">Server Manager</a></p>
+';
+		}
+		echo "\n";
+		if (!$user->isInRole('admin')) /* line 10 */ {
 			echo '<p>Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
 ';
 		}
-		echo '<a href="';
-		echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("logout")) /* line 8 */;
-		echo '">Odhlásit</a>
+		if ($user->isLoggedIn()) /* line 11 */ {
+			echo '<p><a href="';
+			echo LR\Filters::escapeHtmlAttr($this->global->uiControl->link("logout")) /* line 11 */;
+			echo '">Odhlásit</a></p>
 ';
+		}
+		echo "\n";
 	}
 
 }

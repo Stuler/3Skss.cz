@@ -1,0 +1,2 @@
+INSERT INTO `course` (`id`, `name`, `course_level_id`, `abbreviation`, `description`, `note`, `date_created`, `date_modified`, `date_deleted`) VALUES
+(16,	'Komplexní základní výcvik',	1,	'KZP',	'',	'',	'2022-01-29 15:40:55',	NULL,	NULL);

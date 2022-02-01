@@ -1,0 +1,40 @@
+{block content}
+
+<a n:href="Dashboard:default">Návrat do administrace</a>
+
+<h2>Server Manager</h2>
+
+<table>
+	<thead>
+	<tr>
+		<th rowspan="2" colspan="1">Název agenta</th>
+		<th colspan="3">Prostor [GB]</th>
+		<th rowspan="2">Počet addonů</th>
+		<th rowspan="2">Stav</th>
+	</tr>
+	<tr>
+		<th>Kapacita</th>
+		<th>Volné</th>
+		<th>Addony</th>
+	</tr>
+	</thead>
+	<tbody>
+	{foreach $instances as $instance}
+		<tr>
+			<td><a n:href="show id=>$instance[id]">{$instance[name]}</a></td>
+			<td>{$instance[drive_capacity_bytes] * pow(10,-9)|round:3}</td>
+			<td>{$instance[drive_free_space_bytes] * pow(10,-9)|round:3}</td>
+			<td>{$instance[drive_addons_size_bytes] * pow(10,-9)|round:3}</td>
+			<td>{var $count = $presenter->getCount($instance[id])}{$count}</td>
+			<td id="textServerStatus" data-link-check-server= {link checkServer!}>Offline</td>
+
+			{*			vytvorim js, ktory bude kazdych 5s volat handle, ktory ma vzdialene pripoji k db a vyvola dotaz*}
+{*			bezi db na rovnakom serveri, ako hra? db musi byt dostupna zvonku*}
+
+{*			odpoved bude json s odpovedou ok alebo nie ok*}
+{*			pouzit $this->sendToJson()*}
+
+		</tr>
+	{/foreach}
+	</tbody>
+</table>

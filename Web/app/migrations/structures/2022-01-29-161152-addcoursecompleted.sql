@@ -1,0 +1,23 @@
+CREATE TABLE `course_completed` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `instructor_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
+  `course_completition_type_id` int(11) NOT NULL,
+  `completition_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_exam_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `next_exam_date` datetime DEFAULT NULL,
+  `date_modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
+  `date_deleted` datetime DEFAULT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
+  `note` text COLLATE utf8mb4_czech_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `course_id` (`course_id`),
+  KEY `course_completition_type_id` (`course_completition_type_id`),
+  KEY `instructor_id` (`instructor_id`),
+  CONSTRAINT `course_completed_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `course_completed_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `course` (`id`),
+  CONSTRAINT `course_completed_ibfk_3` FOREIGN KEY (`course_completition_type_id`) REFERENCES `course_completition_type` (`id`),
+  CONSTRAINT `course_completed_ibfk_7` FOREIGN KEY (`instructor_id`) REFERENCES `instructor` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_czech_ci;

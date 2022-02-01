@@ -1,8 +1,15 @@
 {block content}
-<p>Vítejte v administraci!</p>
+<h1>Vítejte v administraci!</h1>
 
+<p n:if="!$user->isLoggedIn()">Pro přístup do administrátorské sekce se <a n:href="Dashboard:login">přihlašte</a>!</p>
 <p n:if="$user->isInRole('admin')"><a n:href="Users:default">Správa uživatelů</a></p>
-<p n:if="$user->isInRole('admin')"><a n:href="Teams:default">ORBAT</a></p>
+<p n:if="$user->isInRole('admin')"><a n:href="Centers:default">ORBAT</a></p>
 <p n:if="$user->isInRole('admin')"><a n:href="Events:default">Kalendář akcí</a></p>
+<p n:if="$user->isInRole('admin')"><a n:href="ServerManager:default">Server Manager</a></p>
+
 <p n:if="!$user->isInRole('admin')">Nemáte administrátorská oprávnění, požádejte administrátora webu, aby vám je přidělil.</p>
-<a n:href="logout">Odhlásit</a>
+<p n:if="$user->isLoggedIn()"><a n:href="logout">Odhlásit</a></p>
+
+{*<p n:if="$user->isInRole('admin')"><a n:href="Addons:default">Správa addonů</a></p>*}
+{*<p n:if="$user->isInRole('admin')"><a n:href="FrameworkInstances:default">Tabulka framework_instances</a></p>*}
+{*<p n:if="$user->isInRole('admin')"><a n:href="Exception:default">Test chybových hlášok</a></p>*}

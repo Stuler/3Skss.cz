@@ -1,0 +1,41 @@
+{block content}
+{if $isShowFilter}
+	{snippet formFilter}
+		{control formFilter}
+	{/snippet}
+
+	{snippet formSearch}
+		{form formSearch} {input term} {input send} {input clear}{/form}
+	{/snippet}
+{/if}
+<table>
+	<thead>
+	<tr>
+		<th></th>
+		{foreach $columns as $column}
+			<th>{$column['label']}</th>
+		{/foreach}
+	</tr>
+	</thead>
+
+	<tbody>
+	{foreach $items as $item}
+		<tr>
+			<td>
+
+			</td>
+			{foreach $columns as $column}
+				<td>
+					<a n:href="editCustom! id =>$item[id]">
+						{if is_a($item[$column[name]], 'DateTime')}
+							{$item[$column[name]]|date:'%d.%m.%Y'}
+						{else}
+							{$item[$column[name]]}
+						{/if}
+					</a>
+				</td>
+			{/foreach}
+		</tr>
+	{/foreach}
+	</tbody>
+</table>

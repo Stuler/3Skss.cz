@@ -17,33 +17,29 @@ class SignInFormFactory {
 	/** @var User */
 	private $user;
 
-
-	public function __construct(FormFactory $factory, User $user)
-	{
+	public function __construct(FormFactory $factory, User $user) {
 		$this->factory = $factory;
 		$this->user = $user;
 	}
 
-
-	public function create(callable $onSuccess): Form
-	{
+	public function create(callable $onSuccess): Form {
 		$form = $this->factory->create();
-		$form->addText('nick', 'Username:')
-			->setRequired('Please enter your email.');
+		$form->addText('nick', 'Nick')
+			->setRequired('Prosím, uveď svůj nick.');
 
-		$form->addPassword('password', 'Password:')
-			->setRequired('Please enter your password.');
+		$form->addPassword('password', 'Heslo')
+			->setRequired('Prosim, zadej heslo');
 
-		$form->addCheckbox('remember', 'Keep me signed in');
+		$form->addCheckbox('remember', 'Zapamatovat přihlášení');
 
-		$form->addSubmit('send', 'Sign in');
+		$form->addSubmit('send', 'Přihlásit');
 
 		$form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess): void {
 			try {
-				$this->user->setExpiration($values->remember ? '14 days' : '1 minutes');
+				$this->user->setExpiration($values->remember ? '14 days' : '60 minutes');
 				$this->user->login($values->nick, $values->password);
 			} catch (AuthenticationException $e) {
-				$form->addError('The username or password you entered is incorrect.');
+				$form->addError('Zadané jméno nebo heslo je nesprávné.');
 				return;
 			}
 			$onSuccess();

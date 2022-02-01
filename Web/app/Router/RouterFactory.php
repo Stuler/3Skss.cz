@@ -11,15 +11,12 @@ final class RouterFactory {
 	use Nette\StaticClass;
 
 	public static function createRouter(): RouteList {
-		$router = new RouteList;
-		$router[] = $module = new RouteList('Admin');
-		$module->addRoute('admin/<presenter>/<action>', 'Dashboard:default');
+		$router = new RouteList();
 
-//		$router[] = $module = new RouteList('Member');
-//		$module->addRoute('<presenter>/<action>', 'Homepage:default');
+		$router
+			->add(\App\AdminModule\Router\RouterFactory::createRouter())
+			->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
 
-		$router->addRoute('[<url>]', 'Homepage:default');
 		return $router;
-
 	}
 }

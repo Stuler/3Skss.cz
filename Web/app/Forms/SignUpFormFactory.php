@@ -11,7 +11,7 @@ use Nette\SmartObject;
 class SignUpFormFactory {
 	use SmartObject;
 
-	private const PASSWORD_MIN_LENGTH = 7;
+	private const PASSWORD_MIN_LENGTH = 6;
 
 	/** @var FormFactory */
 	private $factory;
@@ -26,24 +26,26 @@ class SignUpFormFactory {
 
 	public function create(callable $onSuccess): Form {
 		$form = $this->factory->create();
-		$form->addText('nick', 'Pick a username:')
-			->setRequired('Please pick a username.');
+		$form->addHidden('id');
+		$form->addText('nick', 'Nick (ve hře)')
+			->setRequired('Prosím, uveď přezívku ve hře.');
 
-		$form->addEmail('email', 'Your e-mail:')
-			->setRequired('Please enter your e-mail.');
+		$form->addEmail('email', 'Emailová adresa')
+			->setRequired('Prosím, uveď email.');
 
-		$form->addPassword('password', 'Create a password:')
-			->setOption('description', sprintf('at least %d characters', self::PASSWORD_MIN_LENGTH))
-			->setRequired('Please create a password.')
+		$form->addPassword('password', 'Heslo')
+			->setOption('description', sprintf('heslo musí mít alespoň %d znaků', self::PASSWORD_MIN_LENGTH))
+			->setRequired('Prosím, uveď heslo.')
 			->addRule($form::MIN_LENGTH, null, self::PASSWORD_MIN_LENGTH);
 
-		$form->addSubmit('send', 'Sign up');
+		$form->addSubmit('send', 'Registrovat');
 
 		$form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess): void {
 			try {
-				$this->userPM->add($values->nick, $values->email, $values->password);
+				$this->userPM->add($values->id, $values->nick, $values->email, $values->password);
+				$this->redirect(':Admin:Users:Edit', $values->id);
 			} catch (DuplicateNameException $e) {
-				$form['username']->addError('Username is already taken.');
+				$form['username']->addError('Uživatel s tímto nickem už existuje.');
 				return;
 			}
 			$onSuccess();

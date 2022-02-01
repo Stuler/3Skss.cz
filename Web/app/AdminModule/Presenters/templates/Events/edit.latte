@@ -1,0 +1,11 @@
+{block content}
+
+<a n:href=":Admin:Events:default eventId=>null">Návrat do kalendáře</a>
+
+{control formEventEdit}
+
+{if $eventId}
+	<div>
+		<a n:href="delete id=>$eventId">Odstranit událost<a>
+	</div>
+{/if}

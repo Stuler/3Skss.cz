@@ -24,13 +24,22 @@ class BasePresenter extends Presenter {
 	 * Na začátku každé akce u všech presenterů zkontroluje uživatelská oprávnění k této akci.
 	 * @throws AbortException Jestliže uživatel nemá oprávnění k dané akci a bude přesměrován.
 	 */
-	protected function startup()
-	{
+	protected function startup() {
 		parent::startup();
 		if (!$this->getUser()->isAllowed($this->getName(), $this->getAction())) {
 			$this->flashMessage('Nejsi přihlášený nebo nemáš dostatečná oprávnění.');
-//			$this->redirect(':Admin:Dashboard:login');
+			//			$this->redirect(':Admin:Dashboard:login');
 		}
+	}
+
+	public function actionLogin() {
+		if ($this->getUser()->isLoggedIn())
+			$this->redirect('Dashboard:Default');
+	}
+
+	public function actionLogout(): void {
+		$this->getUser()->logout(true);
+		$this->redirect('login');
 	}
 
 }

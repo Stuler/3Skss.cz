@@ -17,10 +17,18 @@ di:
 		tags: no
 
 security:
-    roles:
-        guest:
-        member: [guest]
-        admin:
+	roles:
+		guest:
+		member: [guest]
+		admin:
+
+search:
+	section:
+		in: %appDir%/Models
+		classes:
+			- *Repository
+			- *DataSource
+			- *DataManager
 
 
 services:
@@ -32,29 +40,83 @@ services:
 	security.authorizator:
 		setup:
 		- addResource(Admin:Dashboard)
+		- addResource(Admin:Command)
+		- addResource(Admin:CombatSection)
+		- addResource(Admin:TacAir)
 		- addResource(Admin:Users)
-		- addResource(Admin:Teams)
+		- addResource(Admin:Centers)
 		- addResource(Admin:Events)
+		- addResource(Admin:TrainingCenter)
+		- addResource(Admin:Addons)
+		- addResource(Admin:FrameworkInstances)
+		- addResource(Admin:Exception)
+		- addResource(Admin:ServerManager)
+		- allow(admin)
 		- allow(guest, Admin:Dashboard, login)
 		- allow(guest, Admin:Dashboard, register)
 
-	userRepository:
-		factory: App\Models\Repository\Table\UserRepository
+	customRepository:
+		factory: App\Components\CustomList\Models\CustomRepository
 		inject: true
 
-	squadRepository:
-		factory: App\Models\Repository\Table\SquadRepository
+	searchFilterRepository:
+		factory: App\Components\SearchFilter\Models\SearchFilterRepository
 		inject: true
 
-	rankRepository:
-		factory: App\Models\Repository\Table\RankRepository
+	- App\Components\Courses\CourseLevel\CourseLevelFactory
+	courseLevel:
+		class: App\Components\Courses\CourseLevel\CourseLevel
 		inject: true
+		autowired: false
 
-	roleRepository:
-		factory: App\Models\Repository\Table\RoleRepository
+	- App\Components\Courses\CourseFamily\CourseFamilyFactory
+	courseFamily:
+		class: App\Components\Courses\CourseFamily\CourseFamily
 		inject: true
+		autowired: false
 
-	userFormDataSource:
-		factory: App\Models\DataSource\Form\UserFormDataSource
+	- App\Components\Courses\UserCourseDetail\UserCourseDetailFactory
+	userCourseDetail:
+		class: App\Components\Courses\UserCourseDetail\UserCourseDetail
 		inject: true
+		autowired: false
 
+	- App\Components\UserDetail\UserDetailFactory
+	userDetail:
+		class: App\Components\UserDetail\UserDetail
+		inject: true
+		autowired: false
+
+	- App\Components\CustomList\CustomListFactory
+	customList:
+		class: App\Components\CustomList\CustomList
+		inject: true
+		autowired: false
+
+	- App\Components\SearchFilter\SearchFilterFactory
+	searchFilter:
+		class: App\Components\SearchFilter\SearchFilter
+		inject: true
+		autowired: false
+
+	- App\Components\FormSquad\FormSquadFactory
+	formSquad:
+		class: App\Components\FormSquad\FormSquad
+		inject: true
+		autowired: false
+
+	- App\Components\FormDetachment\FormDetachmentFactory
+	formDetachment:
+		class: App\Components\FormDetachment\FormDetachment
+		inject: true
+		autowired: false
+
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+	migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+
+migrations:
+	dir: %appDir%/migrations 	# migrations base directory
+	driver: mysql               # pgsql or mysql
+	dbal: nette               	# nextras, nette, doctrine or dibi
+	withDummyData: %debugMode%
