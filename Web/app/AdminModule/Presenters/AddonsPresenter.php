@@ -6,11 +6,11 @@ namespace App\AdminModule\Presenters;
 use App\Components\CustomList\CustomList;
 use App\Components\CustomList\CustomListFactory;
 use App\Models\Repository\Table\AddonsRepository;
-use App\Models\Repository\Table\FrameworkInstancesRepository;
+use App\Models\Repository\Table\ServerAgentsRepository;
 use App\Presenters\_core\BasePresenter;
 use Nette\Application\UI\Form;
 
-class AddonsPresenter extends BasePresenter {
+class AddonsPresenter extends BaseAdminPresenter {
 
 	/** @var CustomListFactory @inject @internal */
 	public $customListFactory;
@@ -18,7 +18,7 @@ class AddonsPresenter extends BasePresenter {
 	/** @var AddonsRepository @inject @internal */
 	public $addonsRepo;
 
-	/** @var FrameworkInstancesRepository @inject @internal */
+	/** @var ServerAgentsRepository @inject @internal */
 	public $frameworkInstancesRepo;
 
 	public function renderDefault() {

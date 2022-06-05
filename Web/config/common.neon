@@ -20,7 +20,7 @@ security:
 	roles:
 		guest:
 		member: [guest]
-		admin:
+		admin: [member]
 
 search:
 	section:
@@ -29,6 +29,8 @@ search:
 			- *Repository
 			- *DataSource
 			- *DataManager
+			- *ProcessManager
+			- *Process
 
 
 services:
@@ -36,7 +38,8 @@ services:
 	- App\Forms\FormFactory
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
-	authenticator: App\models\UserManager
+	authenticator: App\Models\UserManager
+#	authorizator: App\Models\AuthorizatorFactory::create
 	security.authorizator:
 		setup:
 		- addResource(Admin:Dashboard)
@@ -51,9 +54,13 @@ services:
 		- addResource(Admin:FrameworkInstances)
 		- addResource(Admin:Exception)
 		- addResource(Admin:ServerManager)
+		- addResource(Admin:Sign)
+		- addResource(Member:Dashboard)
 		- allow(admin)
 		- allow(guest, Admin:Dashboard, login)
+		- allow(guest, Admin:Sign, login)
 		- allow(guest, Admin:Dashboard, register)
+		- allow(guest, Member:Dashboard, login)
 
 	customRepository:
 		factory: App\Components\CustomList\Models\CustomRepository
@@ -69,21 +76,39 @@ services:
 		inject: true
 		autowired: false
 
+	- App\Components\Courses\FormBootcamp\FormBootcampFactory
+	formBootcamp:
+		class: App\Components\Courses\FormBootcamp\FormBootcamp
+		inject: true
+		autowired: false
+
+	- App\Components\Courses\FormBootcampParticipant\FormBootcampParticipantFactory
+	formBootcampParticipant:
+		class: App\Components\Courses\FormBootcampParticipant\FormBootcampParticipant
+		inject: true
+		autowired: false
+
 	- App\Components\Courses\CourseFamily\CourseFamilyFactory
 	courseFamily:
 		class: App\Components\Courses\CourseFamily\CourseFamily
 		inject: true
 		autowired: false
 
-	- App\Components\Courses\UserCourseDetail\UserCourseDetailFactory
-	userCourseDetail:
-		class: App\Components\Courses\UserCourseDetail\UserCourseDetail
+	- App\Components\Courses\UserQualification\UserQualificationFactory
+	userQualification:
+		class: App\Components\Courses\UserQualification\UserQualification
 		inject: true
 		autowired: false
 
 	- App\Components\UserDetail\UserDetailFactory
 	userDetail:
 		class: App\Components\UserDetail\UserDetail
+		inject: true
+		autowired: false
+
+	- App\Components\DialogWindow\DialogWindowFactory
+	dialogWindow:
+		class: App\Components\DialogWindow\DialogWindow
 		inject: true
 		autowired: false
 
@@ -114,9 +139,19 @@ services:
 extensions:
 	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
 	migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+	webpack: Oops\WebpackNetteAdapter\DI\WebpackExtension(%debugMode%, %consoleMode%)
 
 migrations:
 	dir: %appDir%/migrations 	# migrations base directory
 	driver: mysql               # pgsql or mysql
 	dbal: nette               	# nextras, nette, doctrine or dibi
 	withDummyData: %debugMode%
+
+webpack:
+    build:
+        directory: %wwwDir%/assets
+        publicPath: assets/
+    devServer:
+        enabled: %debugMode%
+        url: http://localhost:8000/assets
+

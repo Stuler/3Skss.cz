@@ -4,14 +4,15 @@ declare(strict_types=1);
 namespace App\AdminModule\Presenters;
 
 use App\Models\Repository\Table\AddonsRepository;
-use App\Models\Repository\Table\FrameworkInstancesRepository;
+use App\Models\Repository\Table\ServerAgentsRepository;
 use App\Presenters\_core\BasePresenter;
+use Nette\Application\LinkGenerator;
 use Nette\Application\UI\Form;
 
-class ServerManagerPresenter extends BasePresenter {
+class ServerManagerPresenter extends BaseAdminPresenter {
 
-	/** @var FrameworkInstancesRepository @inject @internal */
-	public $frameworkInstancesRepo;
+	/** @var ServerAgentsRepository @inject @internal */
+	public $serverAgentsRepo;
 
 	/** @var AddonsRepository @inject @internal */
 	public $addonsRepo;
@@ -22,6 +23,9 @@ class ServerManagerPresenter extends BasePresenter {
 	/** @persistent */
 	public $sorted;
 
+	/** @var LinkGenerator @inject @internal */
+	public $linkGenerator;
+
 	public $sortedColumn;
 
 	public $sortOrder;
@@ -31,8 +35,9 @@ class ServerManagerPresenter extends BasePresenter {
 	private $filterTerm;
 
 	public function renderDefault() {
-		$instances = $this->frameworkInstancesRepo->findAll()->fetchAll();
+		$instances = $this->serverAgentsRepo->findAll()->fetchAll();
 		$this->template->instances = $instances;
+		$this->template->serverStatusLink = $this->link("getStatus!");
 	}
 
 	public function renderShow(int $id) {
@@ -98,8 +103,8 @@ class ServerManagerPresenter extends BasePresenter {
 		return $this->addonsRepo->fetchAddonsCount($id);
 	}
 
-	public function handleCheckServer() {
-
+	public function handleGetStatus() {
+		$this->sendJson(["serverStatus" => "ok"]);
 	}
 
 }

@@ -5,7 +5,7 @@ namespace App\AdminModule\Presenters;
 
 use App\Presenters\_core\BasePresenter;
 
-class TacAirPresenter extends BasePresenter {
+class TacAirPresenter extends BaseAdminPresenter {
 
 	public function renderDefault() {
 

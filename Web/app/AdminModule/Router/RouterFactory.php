@@ -17,7 +17,8 @@ final class RouterFactory {
 		$router
 			->withModule('Admin')
 			->withPath('admin')
-			->addRoute('<presenter>/<action>', 'Dashboard:default');
+			->addRoute('<presenter>/<action>', 'Dashboard:default')
+			->addRoute('<presenter>/<action>', 'Sign:in');
 
 		return $router;
 	}

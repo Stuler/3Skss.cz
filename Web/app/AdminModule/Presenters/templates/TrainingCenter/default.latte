@@ -1,14 +1,11 @@
 {block content}
-{*<link rel="stylesheet" href="{$basePath}/css/style.css">*}
-{*<link rel="stylesheet" href="{$basePath}/css/normalize.css">*}
-{*<link rel="stylesheet" href="{$basePath}/css/bootstrap.css">*}
 
-<a n:href="Dashboard:default courseId=>null">Návrat do administrace</a>
 <a n:href="Centers:default courseId=>null">Návrat do ORBAT</a>
 
 <h2>1. Středisko Speciálního výcviku</h2>
 <div>
 	<p>
+		<a n:href="editBootcamp!">Vytvořit třídu</a><br>
 		<a n:href="editCourseLevel courseLevelId=>null">Vytvořit etapu výcviku</a><br>
 		<a n:href="editCourse courseId=>null">Vytvořit výcvik</a>
 	</p>
@@ -19,39 +16,53 @@
 		{if isset($showModal)}
 			<div class="modal-content">
 				<a class="ajax float-right" n:href="closeModal!">X</a>
-				{control formCourseFamily}
+				{control formBootcamp}
 			</div>
 		{/if}
 	{/snippet}
 </main>
 
-<h3>Etapy výcviku</h3>
-{foreach $etapes as $etape}
-	<ul>
-		<a n:href="editCourseLevel courseLevelId=>$etape->id">{$etape->name}</a>
-		{foreach $courses as $course}
-			<ul>
-				{if $course->course_level_id == $etape->id}
-					<li>
-						<a n:href="editCourse courseId=>$course->id">{$course->name}</a>
-					</li>
-				{/if}
-			</ul>
-		{/foreach}
-	</ul>
-{/foreach}
+<div>
+	<h3>Probíhající výcvikové kurzy</h3>
+	{if $bootcamps}
+		<table>
+			<thead>
+			<tr>
+				<th></th>
+				<th>Číslo třídy</th>
+				<th>Název třídy</th>
+				<th>Datum založení</th>
+				<th>Počet uchazečů</th>
+			</tr>
+			</thead>
+			<tbody>
+			{foreach $bootcamps as $bootcamp}
+				<tr>
+					<td><a n:href="deleteBootcamp! id=>$bootcamp->id">X</a></td>
+					<td><a n:href="editBootcamp bootcampId=>$bootcamp->id">{$bootcamp->class_number}</a></td>
+					<td>{$bootcamp->label}</td>
+					<td>{$bootcamp->active_since|date:'%d.%m.%Y'}</td>
+				</tr>
+			{/foreach}
+			</tbody>
+		</table>
+	{/if}
+</div>
 
-{*{control customList}*}
-
-{*<h3>Výcvikový strom:</h3>*}
-{*{snippet courseFamilyList}*}
-{*	{foreach $courses as $course}*}
-{*		<div>*}
-{*			<p>*}
-{*				<a n:href="edit id=>$course['id']">{$course->name}</a>*}
-{*			</p>*}
-{*		</div>*}
-{*	{/foreach}*}
-{*{/snippet}*}
-
-
+<div>
+	<h3>Etapy výcviku</h3>
+	{foreach $etapes as $etape}
+		<ul>
+			<a n:href="editCourseLevel courseLevelId=>$etape->id">{$etape->name}</a>
+			{foreach $courses as $course}
+				<ul>
+					{if $course->course_level_id == $etape->id}
+						<li>
+							<a n:href="editCourse courseId=>$course->id">{$course->name}</a>
+						</li>
+					{/if}
+				</ul>
+			{/foreach}
+		</ul>
+	{/foreach}
+</div>

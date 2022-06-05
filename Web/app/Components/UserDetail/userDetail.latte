@@ -1,59 +1,94 @@
 {block content}
-{snippet userDetail}
+{*{snippet userDetail}*}
+<div>
+	<h2>{$currentUser->rank->name} {$currentUser->nick}</h2>
+</div>
 
-	<div>
-		<h2>{$currentUser->rank->name} {$currentUser->nick}</h2>
-	</div>
-
+{snippet formUserFunctions}
 	<div class="container">
-		<h3>Základní informace</h3>
+		<h3>Funkce <span><a class="ajax" n:href="editUserFunctions! name=>'formUserFunctions'">Upravit</a></span></h3>
+		{if $currentUser->is_commander}
+			<ul>Velitelský sbor</ul>
+		{/if}
+		{if $currentUser->is_personalist}
+			<ul>Personalista</ul>
+		{/if}
 
-		<div>Datum registrace: {$currentUser->date_created|date:'%d-%m-%Y'}</div>
+		{if $currentUser->is_instructor}
+			<ul>Instruktor</ul>
+		{/if}
+		{if $currentUser->is_squadleader}
+			<ul>Velitel jednotky: {$currentUser->squad->abbreviation}</ul>
+		{/if}
+	</div>
+{/snippet}
+
+{snippet basicInfo}
+	<div class="container">
+		<h3>Základní informace <span><a class="ajax" n:href="editBasicInfo! name=>'formBasicInfo'">Upravit</a></span></h3>
+		<div>Datum registrace: {$currentUser->date_created|date:'d-m-Y'}</div>
 		<div>Discord ID: {$currentUser->discord_id}</div>
-		<div>Steam ID: {$currentUser->steam_id}</div>
+		<div><a href="https://steamcommunity.com/profiles/{$currentUser->steam_id}">Steam</a></div>
 	</div>
+{/snippet}
 
+
+{snippet combatAssignment}
 	<div class="container">
-		<h3>Bojové zařazení</h3>
-		{if $currentUser->squad}
+		<h3>Bojové zařazení <span><a class="ajax" n:href="editCombatAssignment! name=>'formUserCombatAssignment'">Upravit</a></span></h3>
+		{if $currentUser->squad->detachment}
 			<div>Jednotka: {$currentUser->squad->detachment->name}</div>
 			<div>Pozice: {$currentUser->squad->abbreviation}-{$currentUser->squad_pos}</div>
+		{elseif !$currentUser->squad->detachment}
+			<div>Jednotka: {$currentUser->squad->name}</div>
 		{else}
 			<div>Jednotka: Nepřirazeno</div>
 		{/if}
 	</div>
-
-	<div class="container">
-		<h3>Administrativní zařazení</h3>
-		<ul>
-
-			{if $currentUser->is_admin}
-				<li>
-					Člen velení skupiny
-				</li>
-			{/if}
-
-		{if $currentUser->squad_pos == 1}
-				<li>
-					Velitel jednotky: {$currentUser->squad->name}
-				</li>
-			{/if}
-				{foreach $instructors as $instructor}
-				{if $currentUser->id == $instructor->user_id}
-					<li>
-						Instruktor: {$instructor->course->name}
-					</li>
-				{/if}
-			{/foreach}
-		</ul>
-	</div>
-
-	<div class="container">
-		<h3>Kvalifikace</h3>
-
-	</div>
-
 {/snippet}
+
+{snippet userRating}
+	<div class="container">
+		<h3>Hodnocení <span><a class="ajax" n:href="editUserRating! name=>'formUserRating'">Upravit</a></span></h3>
+		<div>Taktické skóre: {$currentUser->tactical_points}</div>
+		<div>Žlutá karta: {$currentUser->penalty}</div>
+	</div>
+{/snippet}
+
+{snippet userQualification}
+	<div class="container">
+		<h3>Kvalifikace </h3>
+		<p>
+			{foreach $courses as $course}
+				<a n:href="editQualification! courseId =>$course[id]">{$course[name]}</a><br>
+			{/foreach}
+		</p>
+		<a class="ajax" n:href="editQualification! name=>'formUserQualification'">Přidat novou kvalifikaci</a>
+	</div>
+{/snippet}
+
+{snippet modalFormUser}
+	{if isset($showModal)}
+		<div class="modal-content">
+			<a class="ajax float-right" n:href="closeModal!">X</a>
+			{if $modalName == 'formBasicInfo'}
+				{control formUserBasicInfo}
+			{elseif $modalName == 'formUserCombatAssignment'}
+				{control formUserCombatAssignment}
+			{elseif $modalName == 'formUserAdminAssignment'}
+				{control formUserAdminAssignment}
+			{elseif $modalName == 'formUserRating'}
+				{control formUserRating}
+			{elseif $modalName == 'formUserQualification'}
+				{control formUserQualification}
+			{elseif $modalName == 'formUserFunctions'}
+				{control formUserFunctions}
+			{/if}
+		</div>
+	{/if}
+{/snippet}
+
+{*{/snippet}*}
 
 
 

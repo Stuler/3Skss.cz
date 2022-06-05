@@ -12,7 +12,7 @@ use App\models\Repository\Table\SquadRepository;
 use App\models\Repository\Table\UserRepository;
 use App\Presenters\_core\BasePresenter;
 
-class CombatSectionPresenter extends BasePresenter {
+class CombatSectionPresenter extends BaseAdminPresenter {
 
 	/** @var FormSquadFactory @inject @internal */
 	public $formSquadFactory;

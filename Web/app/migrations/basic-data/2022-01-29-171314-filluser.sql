@@ -1,5 +1,0 @@
-INSERT INTO `user` (`id`, `nick`, `email`, `password`, `discord_id`, `steam_id`, `login_role_id`, `date_created`, `date_modified`, `date_deleted`, `deleted_by`, `note`, `squad_id`, `squad_pos`, `rank_id`, `is_admin`, `is_super_admin`, `is_commander`, `is_instructor`, `is_squadleader`, `tactical_points`, `penalty`, `is_active`) VALUES
-(2,	'admin',	'peter.jurek@gmail.com',	'$2y$10$tH9goK/PKe4oeXMMsSNxXOJ/gY3oP1A0cmHVAEW8jwL4w.90D..l.',	0,	0,	1,	'2021-10-15 07:09:10',	'2022-01-29 14:31:39',	NULL,	NULL,	'',	1,	1,	8,	1,	1,	0,	0,	0,	8,	NULL,	1),
-(49,	'Stuler',	'test@test.cz',	'$2y$10$/0UI8SnFcCxl4RES8DK2fuc93s6fUg7avQ6FNQdv2.BjaGSTIK75G',	0,	0,	2,	'2022-01-29 15:32:37',	'2022-01-29 14:36:06',	NULL,	NULL,	'',	5,	0,	1,	0,	0,	0,	0,	0,	0,	0,	1),
-(50,	'Rafty',	'',	'',	675647,	877598,	2,	'2022-01-29 15:39:52',	NULL,	NULL,	NULL,	'',	NULL,	0,	1,	0,	0,	0,	0,	0,	NULL,	NULL,	1),
-(51,	'Karel',	'',	'',	0,	0,	2,	'2022-01-29 15:48:20',	NULL,	NULL,	NULL,	'',	NULL,	0,	1,	0,	0,	0,	0,	0,	NULL,	NULL,	1);

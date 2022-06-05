@@ -21,6 +21,10 @@ use Nette\Utils\ArrayHash;
  * @property  int       $tactical_points;
  * @property  int       $penalty;
  * @property  int       $is_active;
+ * @property  int       $is_squadleader;
+ * @property  int       $is_instructor;
+ * @property  int       $is_commander;
+ * @property  int       $is_personalist;
  * @property  string    $note;
  *
  *

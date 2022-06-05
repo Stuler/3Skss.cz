@@ -1,8 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace App\models;
+namespace App\Models;
 
+use App\Models\Repository\Table\LoginRoleRepository;
+use App\models\Repository\Table\SquadRepository;
+use App\Models\Repository\Table\UserRepository;
 use Nette\Database\Explorer;
 use Nette\Database\Table\ActiveRow;
 use Nette\Database\UniqueConstraintViolationException;
@@ -15,6 +18,9 @@ use Nette\Security\SimpleIdentity;
 use Nette\Security\User;
 use Nette\SmartObject;
 
+/**
+ * User Authorization and authentication processes
+ */
 class UserManager implements Authenticator {
 	use SmartObject;
 
@@ -24,7 +30,8 @@ class UserManager implements Authenticator {
 		COLUMN_NAME = 'nick',
 		COLUMN_PASSWORD_HASH = 'password',
 		COLUMN_EMAIL = 'email',
-		COLUMN_ROLE = 'role';
+		COLUMN_ROLE = 'login_role_id',
+		COLUMN_SQUAD = 'squad_id';
 
 	/** @var User */
 	public $user;
@@ -35,11 +42,15 @@ class UserManager implements Authenticator {
 	/** @var Passwords */
 	private $passwords;
 
+	/** @var UserRepository */
+	public $userRepo;
+
 	protected $table = 'user';
 
-	public function __construct(Explorer $db, Passwords $passwords) {
+	public function __construct(Explorer $db, Passwords $passwords, UserRepository $userRepo) {
 		$this->db = $db;
 		$this->passwords = $passwords;
+		$this->userRepo = $userRepo;
 	}
 
 	/**
@@ -62,10 +73,14 @@ class UserManager implements Authenticator {
 				'password' => $this->passwords->hash($password),
 			]);
 		}
-		$arr = $row->toArray();
+		$data = $row->toArray();
 
-		unset($arr['password']);
-		return new SimpleIdentity($row->id, $row->login_role->name, $arr);
+		unset($data['password']);
+		return new SimpleIdentity(
+			$row->id,
+			$row->login_role->name,
+			$data
+		);
 	}
 
 	/*
@@ -97,7 +112,7 @@ class UserManager implements Authenticator {
 	public function createIdentity(int $loginId): Identity {
 		$row = $this->fetchById($loginId);
 		if (!$row) {
-			throw new AuthenticationException('User was deactivated.');
+			throw new AuthenticationException('Uživatel není aktivní.');
 		}
 		$values = $row->toArray();
 		$role = $row['role'];
@@ -115,13 +130,14 @@ class UserManager implements Authenticator {
 	/**
 	 * @throws DuplicateNameException
 	 */
-	public function add($id, $nick, $email, $password) {
+	public function add($id, $nick, $email, $password): int {
 		try {
 			$this->db->table($this->table)->insert([
-				self::COLUMN_ID            => $id,
 				self::COLUMN_NAME          => $nick,
 				self::COLUMN_PASSWORD_HASH => $this->passwords->hash($password),
 				self::COLUMN_EMAIL         => $email,
+				self::COLUMN_ROLE          => LoginRoleRepository::ROLE_MEMBER,
+				self::COLUMN_SQUAD         => SquadRepository::IN_TRAINING,
 			]);
 			return intval($this->db->getInsertId());
 		} catch (UniqueConstraintViolationException $e) {

@@ -8,4 +8,6 @@ use App\models\BaseModel\BaseModel;
 class SquadRepository extends BaseModel {
 
 	protected $table = 'squad';
+
+	public const IN_TRAINING = 5;
 }

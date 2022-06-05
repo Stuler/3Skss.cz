@@ -5,16 +5,16 @@ namespace App\AdminModule\Presenters;
 
 use App\Components\CustomList\CustomList;
 use App\Components\CustomList\CustomListFactory;
-use App\Models\Repository\Table\FrameworkInstancesRepository;
+use App\Models\Repository\Table\ServerAgentsRepository;
 use App\Presenters\_core\BasePresenter;
 use Nette\Application\UI\Form;
 
-class FrameworkInstancesPresenter extends BasePresenter {
+class FrameworkInstancesPresenter extends BaseAdminPresenter {
 
 	/** @var CustomListFactory @inject @internal */
 	public $customListFactory;
 
-	/** @var FrameworkInstancesRepository @inject @internal */
+	/** @var ServerAgentsRepository @inject @internal */
 	public $frameworkInstancesRepo;
 
 	public function renderDefault() {
@@ -24,9 +24,9 @@ class FrameworkInstancesPresenter extends BasePresenter {
 	public function createComponentCustomListInstances(): CustomList {
 		$customList = $this->customListFactory->create();
 		$customList->showFilter();
-		$customList->setTable('framework_instances');
+		$customList->setTable('server_agents');
 
-		$allCols = $this->frameworkInstancesRepo->getColumnNames('framework_instances');
+		$allCols = $this->frameworkInstancesRepo->getColumnNames('server_agents');
 		foreach ($allCols as $col) {
 			$customList->addColumn($col, '' . $col);
 		}

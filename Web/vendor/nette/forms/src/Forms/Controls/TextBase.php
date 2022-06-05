@@ -41,6 +41,7 @@ abstract class TextBase extends BaseControl
 		} elseif (!is_scalar($value) && !(is_object($value) && method_exists($value, '__toString'))) {
 			throw new Nette\InvalidArgumentException(sprintf("Value must be scalar or null, %s given in field '%s'.", gettype($value), $this->name));
 		}
+
 		$this->value = $value;
 		$this->rawValue = (string) $value;
 		return $this;
@@ -102,26 +103,17 @@ abstract class TextBase extends BaseControl
 	}
 
 
-	/**
-	 * Appends input string filter callback.
-	 * @return static
-	 */
-	public function addFilter(callable $filter)
-	{
-		$this->getRules()->addFilter($filter);
-		return $this;
-	}
-
-
 	public function getControl(): Nette\Utils\Html
 	{
 		$el = parent::getControl();
 		if ($this->emptyValue !== '') {
 			$el->attrs['data-nette-empty-value'] = Strings::trim($this->translate($this->emptyValue));
 		}
+
 		if (isset($el->placeholder)) {
 			$el->placeholder = $this->translate($el->placeholder);
 		}
+
 		return $el;
 	}
 
@@ -151,6 +143,7 @@ abstract class TextBase extends BaseControl
 					: $tmp;
 			}
 		}
+
 		return parent::addRule($validator, $errorMessage, $arg);
 	}
 }

@@ -23,7 +23,8 @@
 		"nittro/nette-bridges": "^2.1",
 		"tomaj/nette-bootstrap-form": "^2.0",
 		"nextras/migrations": "^3.1",
-		"contributte/console": "^0.9.1"
+		"contributte/console": "^0.9.1",
+		"oops/webpack-nette-adapter": "^1.4"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",

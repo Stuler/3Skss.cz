@@ -6,6 +6,7 @@ namespace App\Forms;
 use App\models\DuplicateNameException;
 use App\models\UserManager;
 use Nette\Application\UI\Form;
+use Nette\Security\User;
 use Nette\SmartObject;
 
 class SignUpFormFactory {
@@ -17,11 +18,11 @@ class SignUpFormFactory {
 	private $factory;
 
 	/** @var UserManager */
-	private $userPM;
+	private $userManager;
 
-	public function __construct(FormFactory $factory, UserManager $userPM) {
+	public function __construct(FormFactory $factory, UserManager $userManager) {
 		$this->factory = $factory;
-		$this->userPM = $userPM;
+		$this->userManager = $userManager;
 	}
 
 	public function create(callable $onSuccess): Form {
@@ -42,8 +43,8 @@ class SignUpFormFactory {
 
 		$form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess): void {
 			try {
-				$this->userPM->add($values->id, $values->nick, $values->email, $values->password);
-				$this->redirect(':Admin:Users:Edit', $values->id);
+				$this->userManager->add($values->id, $values->nick, $values->email, $values->password);
+				//				$this->redirect(':Admin:Users:Edit', $values->id);
 			} catch (DuplicateNameException $e) {
 				$form['username']->addError('Uživatel s tímto nickem už existuje.');
 				return;

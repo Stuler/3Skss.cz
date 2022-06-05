@@ -8,6 +8,8 @@ CREATE TABLE `course` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `date_deleted` datetime DEFAULT NULL,
+  `created_by` int(11) NOT NULL,
+  `deleted_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `course_level_id` (`course_level_id`),
   CONSTRAINT `course_ibfk_1` FOREIGN KEY (`course_level_id`) REFERENCES `course_level` (`id`)

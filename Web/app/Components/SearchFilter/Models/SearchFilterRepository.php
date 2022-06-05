@@ -8,7 +8,7 @@ use Nette\Database\Table\Selection;
 
 class SearchFilterRepository extends BaseModel {
 
-	public function fetchAllCustom(string $tableName, ?string $relativeColumn, ?int $relativeValue, ?string $searchTerm = null, ?array $columns): Selection {
+	public function fetchAllCustom(string $tableName, ?string $relativeColumn, ?int $relativeValue, ?array $columns, ?string $searchTerm = null): Selection {
 		$allCols = $this->db->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME ='$tableName' AND TABLE_SCHEMA='skss'")
 			->fetchPairs(null, "COLUMN_NAME");
 		$likes = [];
@@ -47,7 +47,7 @@ class SearchFilterRepository extends BaseModel {
 	}
 
 	public function getDistinctRows($relativeCol): array {
-		return $this->db->query("SELECT * FROM framework_instances")
+		return $this->db->query("SELECT * FROM server_agents")
 			->fetchPairs(null, 'id');
 	}
 

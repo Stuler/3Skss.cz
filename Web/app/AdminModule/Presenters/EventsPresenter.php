@@ -12,7 +12,7 @@ use App\Presenters\_core\BasePresenter;
 use App\Types\Form\TFormEvent;
 use Nette\Application\UI\Form;
 
-class EventsPresenter extends BasePresenter {
+class EventsPresenter extends BaseAdminPresenter {
 
 	/** @var EventTypeRepository @inject @internal */
 	public $eventTypeRepo;

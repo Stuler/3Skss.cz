@@ -1,0 +1,8 @@
+{snippet modal}
+	{if isset($showModal)}
+		<div class="modal-content">
+			{$controlName->render()}
+			<a class="ajax float-right" n:href="closeModal!">Zavřít</a>
+		</div>
+	{/if}
+{/snippet}

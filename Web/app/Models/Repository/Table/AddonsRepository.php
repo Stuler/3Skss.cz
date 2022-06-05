@@ -11,11 +11,11 @@ class AddonsRepository extends BaseModel {
 	protected $table = 'addons';
 
 	public function fetchAddonsCount($id): int {
-		return $this->findAll()->where('framework_instance_id', $id)->count();
+		return $this->findAll()->where('server_agent_id', $id)->count();
 	}
 
 	public function findByInstanceId($id): Selection {
-		return $this->findAll()->where('framework_instance_id', $id);
+		return $this->findAll()->where('server_agent_id', $id);
 	}
 
 	public function fetchAllBySearchTerm(string $searchTerm, array $columns): Selection {

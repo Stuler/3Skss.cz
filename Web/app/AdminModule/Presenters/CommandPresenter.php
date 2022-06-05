@@ -5,7 +5,7 @@ namespace App\AdminModule\Presenters;
 
 use App\Presenters\_core\BasePresenter;
 
-class CommandPresenter extends BasePresenter {
+class CommandPresenter extends BaseAdminPresenter {
 
 	public function renderDefault() {
 

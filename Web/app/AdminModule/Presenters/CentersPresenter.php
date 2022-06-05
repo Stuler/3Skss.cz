@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\AdminModule\Presenters;
 
+use App\Components\DialogWindow\DialogWindow;
+use App\Components\DialogWindow\DialogWindowFactory;
 use App\Components\FormDetachment\FormDetachment;
 use App\Components\FormDetachment\FormDetachmentFactory;
 use App\Components\FormSquad\FormSquad;
@@ -19,7 +21,7 @@ use App\Types\Form\TFormCenter;
 use App\Types\Form\TFormDetachment;
 use Nette\Application\UI\Form;
 
-class CentersPresenter extends BasePresenter {
+class CentersPresenter extends BaseAdminPresenter {
 
 	/** @var CenterFormDataSource @inject @internal */
 	public $centerFormDS;
@@ -44,6 +46,9 @@ class CentersPresenter extends BasePresenter {
 
 	/** @var UserRepository @inject @internal */
 	public $userRepo;
+
+	/** @var DialogWindowFactory @inject @internal */
+	public $dialogWindowFactory;
 
 	/**
 	 * @persistent
@@ -70,6 +75,10 @@ class CentersPresenter extends BasePresenter {
 
 	public function renderEditDetachment(?int $id) {
 
+	}
+
+	public function createComponentDialog(): DialogWindow {
+		return $this->dialogWindowFactory->create();
 	}
 
 	public function createComponentFormCenter(): Form {

@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Models\DataSource\Form;
 
+use App\Models\ProcessManager\CourseProcessManager;
+use App\Models\ProcessManager\QualificationProcessManager;
 use App\Models\Repository\Table\CourseRepository;
 use App\Models\Repository\Table\InstructorRepository;
 use App\models\Repository\Table\UserRepository;
@@ -16,26 +18,31 @@ class CourseFormDataSource {
 	/** @var CourseRepository */
 	private $courseRepo;
 
-	/** @var UserRepository */
-	private $userRepo;
-
-	/** @var InstructorRepository */
-	private $instructorRepo;
-
-	/** @var User @inject @internal */
+	/** @var User */
 	public $user;
 
-	public function __construct(CourseRepository     $courseRepo,
-	                            UserRepository       $userRepo,
-	                            InstructorRepository $instructorRepo,
-	                            User                 $user
+	/** @var QualificationProcessManager */
+	public $qualificationPM;
+
+	/** @var CourseProcessManager @inject @internal */
+	public $coursePM;
+
+	public function __construct(CourseRepository            $courseRepo,
+	                            UserRepository              $userRepo,
+	                            InstructorRepository        $instructorRepo,
+	                            User                        $user,
+	                            QualificationProcessManager $qualificationPM,
+	                            CourseProcessManager        $coursePM
 	) {
 		$this->courseRepo = $courseRepo;
-		$this->userRepo = $userRepo;
-		$this->instructorRepo = $instructorRepo;
 		$this->user = $user;
+		$this->qualificationPM = $qualificationPM;
+		$this->coursePM = $coursePM;
 	}
 
+	/**
+	 * Returns default values for course edit/create form
+	 */
 	public function getDefaultsSelectCourse($familyId): TFormCourse {
 		/** @var TDbCourse $course */
 		$course = $this->courseRepo->fetchById($familyId);
@@ -50,23 +57,11 @@ class CourseFormDataSource {
 		return $values;
 	}
 
-	public function save(TFormCourse $values) {
-		$course = new TDbCourse();
-		$course->id = $values->id;
-		$course->name = $values->name;
-		$course->abbreviation = $values->abbreviation;
-		$course->description = $values->description;
-		$course->note = $values->note;
-		$course->course_level_id = $values->course_level_id;
-		$courseId = $this->courseRepo->save($course);
-
-		//Automaticky vytvori instruktora kurzu zo superadmina
-		$newInstructor = new TDbInstructor();
-		$userAdmin = $this->userRepo->findAllActive()->select('id')->where("is_super_admin", 1)->limit(1)->fetch();
-		$newInstructor->user_id = $userAdmin;
-		$newInstructor->course_id = $courseId;
-		$newInstructor->created_by = $this->user->getId();
-		$this->instructorRepo->saveAsInstructor($newInstructor);
+	/**
+	 * Calls processes to save/update course data
+	 */
+	public function save(TFormCourse $values): int {
+		return $this->coursePM->save($values);
 	}
 }
 

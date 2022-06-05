@@ -1,4 +1,4 @@
-CREATE TABLE `framework_instances` (
+CREATE TABLE `server_agents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` text COLLATE utf8mb4_czech_ci NOT NULL,
   `name` text COLLATE utf8mb4_czech_ci NOT NULL,

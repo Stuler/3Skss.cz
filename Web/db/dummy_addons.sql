@@ -1,15 +1,8 @@
-INSERT INTO `addons` (`id`, `framework_instance_id`, `addon_id`, `addon_name`, `addon_size_bytes`, `status`, `desired_status`, `date_created`, `date_updated`) VALUES
-(1,	    2,	1110082605,	'ACE Compat - MLO',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
-(2,	    2,	1127502958,	'@Jurassic_Props',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
+INSERT INTO `addons` (`id`, `server_agent_id`, `addon_id`, `addon_name`, `addon_size_bytes`, `status`, `desired_status`, `date_created`, `date_updated`) VALUES
 (3,	    1,	1180533757,	'JSRS SOUNDMOD - RHS USAF Mod Pack Sound Support',	NULL,	1,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
 (4,	    1,	1180534892,	'JSRS SOUNDMOD - RHS GREF Mod Pack Sound Support',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
-(5,	    4,	1188303655,	'Kunduz, Afghanistan - Fixed Doors',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
-(6,	    4,	1188498790,	'IFA3 US Helmets',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
 (7,	    1,	1188797395,	'Project Human 1.2',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
 (8,	    1,	1190934425,	'6 x 6 All Terrain Vehicle',	NULL,	1,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
-(9,	    4,	1193383920,	'TFRF Optics Pack - Firewill s A-10',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
-(10,	3,	1196049538,	'MRHMilSimTools',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
-(11,	4,	1198749494,	'Cartridge Cases',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
 (12,	1,	1199318917,	'BoxLoader - Vehicle in Vehicle loading',	NULL,	1,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
 (13,	1,	1201499127,	'Boxloader - ACE compatability',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),
 (14,	1,	1202636528,	'7Y Assets WW2',	NULL,	NULL,	NULL,	'2021-12-22 08:27:05',	'2021-12-22 08:27:05'),

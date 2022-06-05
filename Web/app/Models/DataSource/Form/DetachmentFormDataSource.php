@@ -16,8 +16,9 @@ class DetachmentFormDataSource {
 	/** @var User */
 	public $user;
 
-	public function __construct(DetachmentRepository $detachmentRepo,
-	                            User                 $user
+	public function __construct(
+		DetachmentRepository $detachmentRepo,
+		User                 $user
 	) {
 		$this->detachmentRepo = $detachmentRepo;
 		$this->user = $user;

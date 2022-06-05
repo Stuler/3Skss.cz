@@ -15,6 +15,7 @@ final class RouterFactory {
 
 		$router
 			->add(\App\AdminModule\Router\RouterFactory::createRouter())
+			->add(\App\MemberModule\Router\RouterFactory::createRouter())
 			->addRoute('<presenter>/<action>[/<id>]', 'Homepage:default');
 
 		return $router;

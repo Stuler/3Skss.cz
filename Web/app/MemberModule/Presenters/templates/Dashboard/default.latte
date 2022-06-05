@@ -1,0 +1,9 @@
+{block content}
+<h1>Vítejte v členské sekci!</h1>
+
+<p n:if="!$user->isLoggedIn()">Pro přístup do členské sekce se <a n:href=":Admin:Dashboard:login">přihlašte</a>!</p>
+Ahoj
+{*<p "><a n:href="Users:default">Seznam uživatelů</a></p>*}
+{*<p "><a n:href="Centers:default">ORBAT</a></p>*}
+{*<p "><a n:href="Events:default">Kalendář akcí</a></p>*}
+

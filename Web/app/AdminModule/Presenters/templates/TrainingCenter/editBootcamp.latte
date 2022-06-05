@@ -1,0 +1,103 @@
+{block content}
+
+<a n:href=":Admin:TrainingCenter:default bootcampId=>null">Návrat do výcvikového střediska</a>
+
+<h2>Výcvikový kurz {$bootcamp->class_number} - {$bootcamp->label}</h2>
+
+<div>
+	<a n:href="addSubject! bootcampId=>$bootcamp->id">Přidat předmět</a><br>
+</div>
+
+{snippet modal}
+	{if isset($showModal)}
+		<div class="modal-content">
+			<a class="ajax float-right" n:href="closeModal!">X</a>
+			{if $modalName == 'formBootcamp'}
+				{control formBootcamp}
+			{elseif $modalName == 'formBootcampParticipant'}
+				{control formBootcampParticipant}
+			{elseif $modalName == 'formBootcampSubject'}
+				{control formBootcampSubject}
+			{elseif $modalName == 'formUserQualificationByCourse'}
+				{control formUserQualificationByCourse}
+			{elseif $modalName == 'formUserTrainingStatus'}
+				{control formUserTrainingStatus}
+			{/if}
+		</div>
+	{/if}
+{/snippet}
+
+<div>
+	<a n:href="addParticipant! roleId=>1" class="ajax">Přidat instruktora</a><br>
+	<a n:href="addParticipant! roleId=>2" class="ajax">Přidat asistenta</a><br>
+	<a n:href="addParticipant! roleId=>3" class="ajax">Přidat rekruta</a><br>
+
+	{if $participants}
+		<div>
+			<table>
+				<tr>
+					<td>Číslo třídy</td>
+					<td><a n:href="editBootcamp! bootcampId=>$bootcamp->id">{$bootcamp->class_number}</a></td>
+				</tr>
+				<tr>
+					<td>Název třídy</td>
+					<td><a n:href="editBootcamp! bootcampId=>$bootcamp->id">{$bootcamp->label}</a></td>
+				</tr>
+				<tr>
+					<td>Vznik</td>
+					<td><a n:href="editBootcamp! bootcampId=>$bootcamp->id">{$bootcamp->active_since|date:'%d.%m.%Y'}</a></td>
+				</tr>
+
+				{foreach $mainInstructors as $mainInstructor}
+				<tr>
+					<td><a n:href="deleteParticipant! id=>$mainInstructor[id]">X</a></td>
+					<td>Hlavní instruktor</td>
+					<th><a n:href="Users:edit userId=>$mainInstructor['user_id']">{$mainInstructor->user->nick}</a></th>
+					{/foreach}
+				</tr>
+
+				{foreach $assistInstructors as $assistInstructor}
+				<tr>
+					<td><a n:href="deleteParticipant! id=>$assistInstructor[id]">X</a></td>
+					<td>Mladší instruktor</td>
+					<th><a n:href="Users:edit userId=>$assistInstructor['user_id']">{$assistInstructor->user['nick']}</a></th>
+					{/foreach}
+				</tr>
+			</table>
+		</div>
+	{/if}
+
+	<div>
+		<table>
+			<thead>
+			<tr>
+				<td colspan="2"></td>
+				<th>Rekrut</th>
+				{foreach $subjects as $subject}
+					<th>{$subject['course']['abbreviation']}</th>
+				{/foreach}
+			</tr>
+			</thead>
+			<tbody>
+			{snippet qualification}
+				{foreach $recruits as $recruit}
+					<tr>
+						<td><a n:href="deleteParticipant! id=>$recruit[id]">X</a></td>
+						<td><a n:href="editTrainingStatus! userId=>$recruit['user_id']">{$recruit['training_status']['label']}</a></td>
+						<th><a n:href="Users:edit userId=>$recruit['user_id']">{$recruit['user']['nick']}</a></th>
+						{foreach $subjects as $subject}
+							{foreach $bootcampQualification as $qualification}
+								{if $recruit['user']['id'] == $qualification['user_id'] && $subject['course_id'] == $qualification['course_id']}
+									<td><a n:href="editQualification! userId=>$recruit['user_id'], courseId => $subject['course_id']">
+											{$qualification['course_completition_type']['name']}</a></td>
+								{/if}
+							{/foreach}
+						{/foreach}
+					</tr>
+				{/foreach}
+			{/snippet}
+			</tbody>
+		</table>
+	</div>
+</div>
+

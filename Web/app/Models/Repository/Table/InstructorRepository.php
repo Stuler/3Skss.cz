@@ -21,12 +21,28 @@ class InstructorRepository extends BaseModel {
 		return $this->findAllActive()->where('user_id=? AND course_id=?', $userId, $courseId);
 	}
 
+	public function fetchInstructorByUserId(int $id): ?ActiveRow {
+		return $this->findAllActive()
+			->where('user_id ?', $id)
+			->select('id')
+			->limit(1)
+			->fetch();
+	}
+
 	public function fetchUserByInstructorId($instructorId): ?ActiveRow {
-		return $this->findAll()->where('instructor.date_deleted IS NULL')->where('id', $instructorId)->select('user.id')->fetch();
+		return $this->findAll()
+			->where('instructor.date_deleted IS NULL')
+			->where('id', $instructorId)
+			->select('user.id')
+			->limit(1)
+			->fetch();
 	}
 
 	public function fetchPairsForQualification(?string $courseId): array {
-		return $this->findAll()->select('user.id, user.nick')->where('course_id', $courseId)->fetchPairs('id', 'nick');
+		return $this->findAll()
+			->select('user.id, user.nick')
+			->where('course_id', $courseId)
+			->fetchPairs('id', 'nick');
 	}
 
 	public function saveAsInstructor($values) {

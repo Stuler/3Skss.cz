@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -7,7 +6,6 @@
 	<link rel="stylesheet" href="{$basePath}/css/style.css">
 	<link rel="stylesheet" href="{$basePath}/css/normalize.css">
 	<link rel="stylesheet" href="{$basePath}/css/bootstrap.css">
-
 	<title>{ifset title}{include title|stripHtml} | {/ifset}Nette Web</title>
 </head>
 
@@ -15,13 +13,12 @@
 
 {include content}
 <p>Vitejte na stránke 3skss</p>
-<p>Pro vstup do členské sekce se <a n:href="Admin:Dashboard:default">přihlašte</a></p>
+<p><a n:href="Sign:in">Přihlásit se</a></p>
 
 </body>
 
 <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
 {block scripts}
-	<script src="{$basePath}/js/main.js"></script>
-	<script src="https://nette.github.io/resources/js/3/netteForms.min.js"></script>
+<script src="{webpack bundle.js}"></script>
 {/block}
 </html>

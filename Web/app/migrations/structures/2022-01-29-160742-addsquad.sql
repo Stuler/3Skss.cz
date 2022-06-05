@@ -13,7 +13,7 @@ CREATE TABLE `squad` (
   `date_deleted` datetime DEFAULT NULL,
   `date_modified` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp(),
   `created_by` int(11) NOT NULL,
-  `deleted_by` int(11) NULL,
+  `deleted_by` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `detachment_id` (`detachment_id`),
   KEY `center_id` (`center_id`),

@@ -25,4 +25,10 @@ class TFormUser {
 	public $penalty;
 	public $is_active;
 	public $note;
+	public $is_commander;
+	public $is_personalist;
+	public $is_instructor;
+	public $is_squadleader;
+
+
 }

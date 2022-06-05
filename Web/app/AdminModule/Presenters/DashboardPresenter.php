@@ -8,91 +8,78 @@ use App\Forms\SignUpFormFactory;
 use App\models\DuplicateNameException;
 use App\models\UserManager;
 use App\Presenters\_core\BasePresenter;
+use App\Types\Form\TFormRegistration;
 use App\Types\Form\TFormUser;
 use Nette\Application\UI\Form;
 
-class DashboardPresenter extends BasePresenter {
+class DashboardPresenter extends BaseAdminPresenter {
 
 	/** @persistent */
 	public $backlink = '';
-
-	/** @var SignInFormFactory */
-	private $signInFactory;
-
-	/** @var SignUpFormFactory */
-	private $signUpFactory;
 
 	/** @var UserManager @inject @internal */
 	public $userManager;
 
 	private const PASSWORD_MIN_LENGTH = 6;
 
-	/**
-	 * @param SignInFormFactory $signInFactory
-	 * @param SignUpFormFactory $signUpFactory
-	 */
-	public function __construct(SignInFormFactory $signInFactory, SignUpFormFactory $signUpFactory) {
+	public function __construct() {
 		parent::__construct();
-		$this->signInFactory = $signInFactory;
-		$this->signUpFactory = $signUpFactory;
 	}
 
 	public function renderDefault() {
-		if ($this->getUser()->isLoggedIn())
-			$this->template->username = $this->user->identity->username;
 	}
 
 	public function createComponentRegistrationForm(): Form {
 		$form = new Form();
 		$form->addHidden('id');
 		$form->addText('nick', 'Nick (ve hře)')
-			->setRequired('Prosím, uveď přezívku ve hře.');
+			->setRequired('Prosím, uveď přezívku ve hře.')
+			->getControlPrototype()
+			->placeholder('Zde uveďte nick používaný ve hře');
 
 		$form->addEmail('email', 'Emailová adresa')
-			->setRequired('Prosím, uveď email.');
+			->setRequired('Prosím, uveď email.')
+			->getControlPrototype()
+			->placeholder('Zde uveďte svůj email');
 
-		$form->addPassword('password', 'Heslo')
-			->setOption('description', sprintf('heslo musí mít alespoň %d znaků', self::PASSWORD_MIN_LENGTH))
-			->setRequired('Prosím, uveď heslo.')
-			->addRule($form::MIN_LENGTH, null, self::PASSWORD_MIN_LENGTH);
+		$contacts = $form->addContainer('contacts');
+		$contacts->addText('facebook_id', 'Facebook účet')
+			->placeholder('Zde uveďte ID Vašeho účtu na Facebooku (volitelné)');
 
-		$form->addSubmit('send', 'Registrovat');
+		$contacts->addText('discord_id', 'Discord účet')
+			->placeholder('Zde uveďte ID Vašeho účtu na Discordu (volitelné)');
 
-		$form->onSuccess[] = function (Form $form, TFormUser $values) {
-			try {
-				$id = $values->id;
-				$nick = $values->nick;
-				$email = $values->email;
-				$password = $values->password;
-				$this->userManager->add($id, $nick, $email, $password);
-				//				$this->userId = $values->id;
-				$this->redirect('login');
-			} catch (DuplicateNameException $e) {
-				$form['username']->addError('Uživatel s tímto nickem už existuje.');
-				return;
-			}
+		$form->addRadioList('preffered_branch_id', 'Preferované působení', [
+			'ground' => 'Pozemní',
+			'air'    => 'letecké',]);
+
+		$experience = $form->addContainer('experience');
+		$experience->addRadioList('Zkušenosti s Armou', 'Preferované působení', [
+			'beginner' => 'Nováček – žádné zkušenosti – potřeba projití výcvikem',
+			'advanced' => 'Pokročilý – nějaké zkušenosti – potřeba projití výcvikem',
+			'expert'   => 'Zkušený – dostatek zkušeností – výcvik ve zrychleném režimu',
+			'other'    => 'Jiné',
+		]);
+
+		$experience->addTextArea('experience_other', 'Jiné');
+		$experience->addTextArea('experience_army', 'Zkušenosti s armádními postupy');
+
+		$sources = $form->addContainer('sources');
+		$contactSources = [
+			'1' => 'z webu 3.SKSS',
+			'2' => 'z Youtube',
+			'3' => 'z Instagramu',
+			'4' => 'ze Steamu',
+			'5' => 'od kamaráda',
+			'6' => 'z Facebooku',
+		];
+		$sources->addRadioList('contact_source', 'Jak jste se o nás dozvědeli?', $contactSources);
+		$sources->addText('contact_friend', 'Pokud jsi zaškrtnul od kamaráda, od kterého?');
+
+		$form->addSubmit('send', 'Odeslat formulář');
+
+		$form->onSuccess[] = function (Form $form, TFormRegistration $values) {
 		};
 		return $form;
 	}
-
-	/**
-	 * Sign-in form factory.
-	 */
-	protected function createComponentSignInForm(): Form {
-		return $this->signInFactory->create(function (): void {
-			$this->flashMessage('Přihlášení proběhlo úspěšně.');
-			$this->redirect('Dashboard:default');
-		});
-	}
-
-	/**
-	 * Sign-up form factory.
-	 */
-	protected function createComponentSignUpForm(): Form {
-		return $this->signUpFactory->create(function (): void {
-			$this->flashMessage('Uživatel byl úspěšně zaregistrován.');
-			$this->redirect('Dashboard:');
-		});
-	}
-
 }
